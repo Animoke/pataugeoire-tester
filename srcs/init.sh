@@ -1,34 +1,24 @@
 #!/bin/bash
+
 # ############################################################################ #
 #                                                                              #
 #    piscine-ultimate-tester                                                   #
 #    v. 1.0                                                                    #
 #                                                                              #
-#    grademe.sh                                     by Animoke (animoke.dev)   #
+#    init.sh                                        by Animoke (animoke.dev)   #
 #                                                                              #
 # ############################################################################ #
 
-#AUTHOR: gpatingr (gpatingr@student.42.fr)
-VERSION="v. 1.0"
-
-src_path="../piscine" # set projects directory here
-current_dir=$PWD
-
-source	srcs/var/colors.sh
-source	srcs/var/dspl.sh
-source	srcs/var/env.sh
-source	srcs/init.sh
-source	srcs/msg.sh
-source	srcs/gfx.sh
-source	srcs/check_file.sh
-source	srcs/check_shell00.sh
-
-init
-print_welcome
-shell00
-
-function	cleanup() {
-	rm -rf src
+function	clean_before_launch() {
+	if [ -e src ] ; then
+		rm -rf src
+	fi
+	if [ -e DEEPTHOUGHT ] ; then
+		rm -f DEEPTHOUGHT
+	fi
 }
 
-cleanup
+function	init() {
+	clean_before_launch
+	mkdir src
+}
