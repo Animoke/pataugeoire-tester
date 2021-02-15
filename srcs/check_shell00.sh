@@ -54,7 +54,7 @@ function	check_sh00_ex02() {
 	let "i += 1"
 	done
 	rm src/shell00/ex02/exo2.tar
-	ls -l src/shell00/ex02
+#	ls -l src/shell00/ex02
 
 	# Check test0
 	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "drwx--xr-x2" | grep "2019" | grep -e "test0" > /dev/null ; then
@@ -103,10 +103,10 @@ function	check_sh00_ex02() {
 	fi
 
 	# Check test6
-	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxrwxrwx1" | grep "2019" | grep -e "test6" | grep -e "test0" > /dev/null ; then
+	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxr-xr-x1" | grep "2019" | grep -e "test6" | grep -e "test0" > /dev/null ; then
 		printf "${uni_success}ex02/test6${diff_ok}${NOCOLOR}\n"
 	else
-		printf "${uni_fail}ex02/test6${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex02/test6${diff_ko}${NOCOLOR}Note: this result does not work on linux.\n"
 	fi
 }
 
