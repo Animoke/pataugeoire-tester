@@ -224,6 +224,22 @@ function	check_sh00_ex08() {
 	rm -rf tests/shell00/ex08
 }
 
+function	check_sh00_ex09() {
+	printf " ${YELLOW}${UNDERLINE}ex09:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex09/ft_magic" ; then
+		msg_nothing_turned_in "ex09/ft_magic"
+		return
+	fi
+#	USER_OUTPUT=$(cat src/shell00/ex09/ft_magic | tr -d \\n)
+#	RES=$(cat tests/shell00/ex09/ft_magic | tr -d \\n)
+	DIFF=$(diff -q src/shell00/ex09/ft_magic tests/shell00/ex09/ft_magic)
+	if [ "$DIFF" != "" ] ; then
+		printf "${uni_fail}ex08/clean${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex08/clean${diff_ok}${NOCOLOR}\n"
+	fi
+}
+
 function	shell00() {
 	mkdir src/shell00 user_output/shell00
 	print_current_part "shell00"
@@ -238,4 +254,5 @@ function	shell00() {
 	check_sh00_ex06
 	check_sh00_ex07
 	check_sh00_ex08
+	check_sh00_ex09
 }
