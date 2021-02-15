@@ -32,7 +32,7 @@ function	check_sh00_ex01() {
 		return
 	fi
 	FILESIZE=$(wc -c src/shell00/ex01/testShell00 | sed -e 's/\ src\/shell00\/ex01\/testShell00//g')
-	if ls -l src/shell00/ex01 | grep -e "-r--r-xr-x 1" | grep -e "2019" > /dev/null && [ $FILESIZE -eq 40 ] ; then
+	if ls -l src/shell00/ex01 | sed -e 's/ //g' | grep -e "-r--r-xr-x1" | grep -e "2019" > /dev/null && [ $FILESIZE -eq 40 ] ; then
 		printf "${uni_success}ex01/testShell00${diff_ok}${NOCOLOR}\n"
 	else
 		printf "${uni_fail}ex01/testShell00${diff_ko}${NOCOLOR}\n"
@@ -55,6 +55,59 @@ function	check_sh00_ex02() {
 	done
 	rm src/shell00/ex02/exo2.tar
 	ls -l src/shell00/ex02
+
+	# Check test0
+	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "drwx--xr-x2" | grep "2019" | grep -e "test0" > /dev/null ; then
+		printf "${uni_success}ex02/test0${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test0${diff_ko}${NOCOLOR}\n"
+	fi
+	
+	# Check test1
+	FILESIZE=$(wc -c src/shell00/ex02/test1 | sed -e 's/\ src\/shell00\/ex02\/test1//g')
+	if ls -l src/shell00/ex02/test1 | sed -e 's/ //g' | grep -e "-rwx--xr--1" | grep "2019" | grep -e "test1" > /dev/null && [ $FILESIZE -eq 4 ] ; then
+		printf "${uni_success}ex02/test1${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test1${diff_ko}${NOCOLOR}\n"
+	fi
+
+	# Check test2
+	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "dr-x---r--2" | grep "2019" | grep -e "test2" > /dev/null ; then
+		printf "${uni_success}ex02/test2${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test2${diff_ko}${NOCOLOR}\n"
+	fi
+
+	# Check test3
+	FILESIZE=$(wc -c src/shell00/ex02/test3 | sed -e 's/\ src\/shell00\/ex02\/test3//g')
+	if ls -l src/shell00/ex02/test3 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep "2019" | grep -e "test3" > /dev/null && [ $FILESIZE -eq 1 ] ; then
+		printf "${uni_success}ex02/test3${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test3${diff_ko}${NOCOLOR}\n"
+	fi
+
+	# Check test4
+	FILESIZE=$(wc -c src/shell00/ex02/test4 | sed -e 's/\ src\/shell00\/ex02\/test4//g')
+	if ls -l src/shell00/ex02/test4 | sed -e 's/ //g' | grep -e "-rw-r----x1" | grep "2019" | grep -e "test4" > /dev/null && [ $FILESIZE -eq 2 ] ; then
+		printf "${uni_success}ex02/test4${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test4${diff_ko}${NOCOLOR}\n"
+	fi
+
+	# Check test5
+	FILESIZE=$(wc -c src/shell00/ex02/test5 | sed -e 's/\ src\/shell00\/ex02\/test5//g')
+	if ls -l src/shell00/ex02/test5 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep "2019" | grep -e "test5" > /dev/null && [ $FILESIZE -eq 1 ] ; then
+		printf "${uni_success}ex02/test5${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test5${diff_ko}${NOCOLOR}\n"
+	fi
+
+	# Check test6
+	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxrwxrwx1" | grep "2019" | grep -e "test6" | grep -e "test0" > /dev/null ; then
+		printf "${uni_success}ex02/test6${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex02/test6${diff_ko}${NOCOLOR}\n"
+	fi
 }
 
 function	shell00() {
