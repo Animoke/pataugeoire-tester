@@ -31,6 +31,8 @@ function	cleanup() {
 	rm -rf src user_output
 }
 
+trap cleanup EXIT
+
 case $1 in
 	--help | -h) 
 		man srcs/help1 ;;

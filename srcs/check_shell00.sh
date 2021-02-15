@@ -120,13 +120,13 @@ function	check_sh00_ex03() {
 		return
 	fi
 	printf "${GREEN} Are you running this test on the same computer you generated your ticket on? (i.e: 42 mac)${NOCOLOR} [Y/n] "
-#	read
+	read
 	printf "\n"
-REPLY="n"
+#REPLY="n"
 	if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ] || [ ! "$REPLY" ] ; then
 		klist > tests/shell00/ex03/klist.txt 2> /dev/null
 		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
-		if ! "$DIFF" ; then
+		if [ "$DIFF" != "" ] ; then
 			printf "${uni_fail}ex03/klist.txt${diff_ko}${NOCOLOR}\n"
 		else
 			printf "${uni_success}ex03/klist.txt${diff_ok}${NOCOLOR}\n"
