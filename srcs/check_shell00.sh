@@ -109,7 +109,7 @@ function	check_sh00_ex02() {
 	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxr-xr-x1" | grep "2019" | grep -e "test6" | grep -e "test0" > /dev/null ; then
 		printf "${uni_success}ex02/test6${diff_ok}${NOCOLOR}\n"
 	else
-		printf "${uni_fail}ex02/test6${diff_ko}${NOCOLOR}Note: this result does not work on linux.\n"
+		printf "${uni_fail}ex02/test6${diff_ko}${NOCOLOR}Note: test6 does not work on linux.\n"
 	fi
 }
 
