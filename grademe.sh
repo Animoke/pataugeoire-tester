@@ -28,7 +28,7 @@ print_welcome
 shell00
 
 function	cleanup() {
-	rm -rf src
+	rm -rf src user_output
 }
 
 cleanup

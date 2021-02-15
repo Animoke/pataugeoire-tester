@@ -10,6 +10,7 @@
 # ############################################################################ #
 
 function	check_sh00_ex00() {
+	printf " ${YELLOW}${UNDERLINE}ex00:\n${NOCOLOR}"
 	if ! file_exists "src/shell00/ex00/z" ; then
 		msg_nothing_turned_in "ex00/z"
 		return
@@ -22,6 +23,7 @@ function	check_sh00_ex00() {
 }
 
 function	check_sh00_ex01() {
+	printf " ${YELLOW}${UNDERLINE}ex01:\n${NOCOLOR}"
 	if ! file_exists "src/shell00/ex01/testShell00.tar" ; then
 		msg_nothing_turned_in "ex01/testShell00.tar"
 		return
@@ -40,6 +42,7 @@ function	check_sh00_ex01() {
 }
 
 function	check_sh00_ex02() {
+	printf " ${YELLOW}${UNDERLINE}ex02:\n${NOCOLOR}"
 	if ! file_exists "src/shell00/ex02/exo2.tar" ; then
 		msg_nothing_turned_in "ex02/exo2.tar"
 		return
@@ -110,11 +113,56 @@ function	check_sh00_ex02() {
 	fi
 }
 
+function	check_sh00_ex03() {
+	printf " ${YELLOW}${UNDERLINE}ex03:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex03/klist.txt" ; then
+		msg_nothing_turned_in "ex03/klist.txt"
+		return
+	fi
+	printf "${GREEN} Are you running this test on the same computer you generated your ticket on? (i.e: 42 mac)${NOCOLOR} [Y/n] "
+#	read
+	printf "\n"
+REPLY="n"
+	if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ] || [ ! "$REPLY" ] ; then
+		klist > tests/shell00/ex03/klist.txt 2> /dev/null
+		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
+		if ! "$DIFF" ; then
+			printf "${uni_fail}ex03/klist.txt${diff_ko}${NOCOLOR}\n"
+		else
+			printf "${uni_success}ex03/klist.txt${diff_ok}${NOCOLOR}\n"
+		fi	
+	else
+		printf "${RED} Skipping...${NOCOLOR}\n"
+		return
+	fi
+}
+
+function	check_sh00_ex04() {
+	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex04/midLS" ; then
+		msg_nothing_turned_in "ex04/midLS"
+		return
+	fi
+	mkdir user_output/shell00/ex04
+	ls -mptU tests/shell00/ex04/files/ | tr -d \\n > tests/shell00/ex04/midLS # 2> /dev/null
+	SRC_MIDLS=$(cat src/shell00/ex04/midLS)
+	USER_OUTPUT=$($SRC_MIDLS tests/shell00/ex04/files | tr -d \\n)
+	printf "$USER_OUTPUT" > user_output/shell00/ex04/midLS
+	DIFF=$(diff -q user_output/shell00/ex04/midLS tests/shell00/ex04/midLS)
+	if [ "$DIFF" != "" ] ; then
+		printf "${uni_fail}ex04/midLS${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex04/midLS${diff_ok}${NOCOLOR}\n"
+	fi
+}
+
 function	shell00() {
-	mkdir src/shell00
+	mkdir src/shell00 user_output/shell00
 	print_current_part "shell00"
 	cp -r $src_path/shell00/ex* ./src/shell00  # copying src files
 	check_sh00_ex00
 	check_sh00_ex01
 	check_sh00_ex02
+	check_sh00_ex03
+	check_sh00_ex04
 }

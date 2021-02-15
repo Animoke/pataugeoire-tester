@@ -20,5 +20,5 @@ function	clean_before_launch() {
 
 function	init() {
 	clean_before_launch
-	mkdir src
+	mkdir src user_output
 }
