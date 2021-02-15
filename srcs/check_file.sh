@@ -11,10 +11,10 @@
 
 function	file_exists() {
 	if [ -e "$1" ] ; then
-		printf "${uni_sep}${1} found.\n" >> ${current_dir}/DEEPTHOUGHT
+#		printf "\$>${1} found.\n\n" >> ${current_dir}/DEEPTHOUGHT
 		return 0
 	else
-		printf "${uni_sep}${1} is missing.\n" >> ${current_dir}/DEEPTHOUGHT
+		printf "\$>${1} is missing. Skipping...\n\n" >> ${current_dir}/DEEPTHOUGHT
 		return 1
 	fi
 }

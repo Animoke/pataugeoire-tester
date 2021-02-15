@@ -1,6 +1,0 @@
-Credentials cache: API:9928E303-8CB4-4CA8-BAB9-96175C298D4D
-        Principal: gpatingr@42.FR
-
-  Issued                Expires               Principal
-Feb 15 15:16:15 2021  Feb 22 15:16:15 2021  krbtgt/42.FR@42.FR
-Feb 15 15:16:15 2021  Feb 22 15:16:15 2021  HTTP/student-storage-2.42.fr@42.FR

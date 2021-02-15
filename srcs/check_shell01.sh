@@ -71,7 +71,7 @@ function	check_sh01_ex03() {
 }
 
 function	shell01() {
-	mkdir src/shell01 user_output/shell01 tests/shell01/
+	mkdir src/shell01 user_output/shell01 
 	print_current_part "shell01"
 	cp -r $src_path/shell01/ex* ./src/shell01  # copying src files
 	

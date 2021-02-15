@@ -25,3 +25,15 @@ function	init() {
 	clean_before_launch
 	mkdir src user_output
 }
+
+function	deepthought_init() {
+	printf "\$> hostname\n" > DEEPTHOUGHT
+	hostname >> DEEPTHOUGHT
+	printf "\$> date\n" >> DEEPTHOUGHT
+	date >> DEEPTHOUGHT
+	printf "\$> gcc --version\n" >> DEEPTHOUGHT
+	gcc --version | grep -e "gcc" >> DEEPTHOUGHT
+	printf "\$> clang --version\n" >> DEEPTHOUGHT
+	clang --version >> DEEPTHOUGHT
+	printf "\nReady for testing\n" >> DEEPTHOUGHT
+}
