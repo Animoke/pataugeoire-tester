@@ -25,7 +25,29 @@ source	srcs/check_shell00.sh
 
 init
 print_welcome
-shell00
+
+case $1 in
+	--help | -h) 
+		man srcs/help1 ;;
+	--shell | -sh) if [ "$2" == "00" ] ; then
+			shell00
+		elif [ "$2" == "01" ] ; then
+			shell01
+		else
+			shell00
+			shell01
+		fi ;;
+	--shell00 | -sh00) shell00 ;;
+	--shell01 | -sh01) shell01 ;;
+	-c) ;;
+	*)
+		man srcs/help1 ;;
+esac
+
+
+
+
+#shell00
 
 function	cleanup() {
 	rm -rf src user_output
