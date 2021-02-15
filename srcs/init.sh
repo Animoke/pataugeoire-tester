@@ -13,6 +13,9 @@ function	clean_before_launch() {
 	if [ -e src ] ; then
 		rm -rf src
 	fi
+	if [ -e user_output ] ; then
+		rm -rf user_output
+	fi
 	if [ -e DEEPTHOUGHT ] ; then
 		rm -f DEEPTHOUGHT
 	fi
