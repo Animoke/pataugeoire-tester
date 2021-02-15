@@ -26,6 +26,26 @@ function	check_sh01_ex01() {
 	else
 		printf "${uni_success}ex01/print_groups.sh${diff_ok}${NOCOLOR}\n"
 	fi
+	cd $current_dir
+}
+
+function	check_sh01_ex02() {
+	printf " ${YELLOW}${UNDERLINE}ex02:\n${NOCOLOR}"
+	if ! file_exists "src/shell01/ex02/find_sh.sh" ; then
+		msg_nothing_turned_in "ex02/find_sh.sh"
+		return
+	fi
+	usr_out=$current_dir/user_output/shell01/ex02
+	mkdir $usr_out
+	cd src/shell01/ex02
+	bash find_sh.sh | tr -d \\n > $usr_out/find_sh_out
+	find . -type f -name "*.sh" | sed 's/\.sh//g' | tr -d './' | sort -d > $usr_out/res_out
+	DIFF=$(diff -q $usr_out/print_groups $usr_out/res_out) 
+	if [ "$DIFF" != "" ] ; then
+		printf "${uni_fail}ex01/print_groups.sh${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex01/print_groups.sh${diff_ok}${NOCOLOR}\n"
+	fi
 }
 
 function	shell01() {
