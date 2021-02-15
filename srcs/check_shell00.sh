@@ -156,13 +156,86 @@ function	check_sh00_ex04() {
 	fi
 }
 
+function	check_sh00_ex05() {
+	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex05/git_commit.sh" ; then
+		msg_nothing_turned_in "ex05/git_commit.sh"
+		return
+	fi
+	cd $src_path/shell00/ex05
+	USER_OUTPUT=$(bash git_commit.sh | cat)
+	if [ ${#USER_OUTPUT} -eq 204 ] ; then
+		printf "${uni_success}ex05/git_commit.sh${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex05/git_commit.sh${diff_ko}${NOCOLOR}\n"
+	fi
+	cd $current_dir
+}
+
+function	check_sh00_ex06() {
+	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex06/git_ignore.sh" ; then
+		msg_nothing_turned_in "ex06/git_ignore.sh"
+		return
+	fi
+	cd $src_path/shell00/ex06
+	USER_OUTPUT=$(bash git_ignore.sh)
+	RES=$(git ls-files -i -o --exclude-standard)
+	if [ "$USER_OUTPUT" == "$RES" ] ; then
+		printf "${uni_success}ex05/git_ignore.sh${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex05/git_ignore.sh${diff_ko}${NOCOLOR}\n"
+	fi
+	cd $current_dir
+
+}
+
+function	check_sh00_ex07() {
+	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex07/b" ; then
+		msg_nothing_turned_in "ex07/b"
+		return
+	fi
+	DIFF=$(diff -q src/shell00/ex07/b tests/shell00/ex07/b)
+	if [ "$DIFF" != "" ] ; then
+		printf "${uni_fail}ex07/b${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex07/b${diff_ok}${NOCOLOR}\n"
+	fi
+}
+
+function	check_sh00_ex08() {
+	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	if ! file_exists "src/shell00/ex08/clean" ; then
+		msg_nothing_turned_in "ex08/clean"
+		return
+	fi
+	mkdir tests/shell00/ex08 tests/shell00/ex08/dir1
+	cp src/shell00/ex08/clean tests/shell00/ex08
+	cd tests/shell00/ex08
+	touch \~test1 \#test2\# dir1/test3\# dir1/\#test4\# test5\# dir1/\#test6 dir1/test7\~ \#test8
+	bash clean > /dev/null
+	if ls | grep -e "test2" || ls dir1 | grep -e "test7" || ls dir1 | grep -e "test4" ; then
+		printf "${uni_fail}ex08/clean${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex08/clean${diff_ok}${NOCOLOR}\n"
+	fi
+	cd $current_dir
+	rm -rf tests/shell00/ex08
+}
+
 function	shell00() {
 	mkdir src/shell00 user_output/shell00
 	print_current_part "shell00"
 	cp -r $src_path/shell00/ex* ./src/shell00  # copying src files
+	
 	check_sh00_ex00
 	check_sh00_ex01
 	check_sh00_ex02
 	check_sh00_ex03
 	check_sh00_ex04
+	check_sh00_ex05
+	check_sh00_ex06
+	check_sh00_ex07
+	check_sh00_ex08
 }
