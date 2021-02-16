@@ -24,9 +24,6 @@ source	srcs/check_file.sh
 source	srcs/check_shell00.sh
 source	srcs/check_shell01.sh
 
-init
-deepthought_init
-
 function	cleanup() {
 	rm -rf src user_output
 }
@@ -36,8 +33,8 @@ trap cleanup EXIT
 case $1 in
 	--help | -h) 
 		man srcs/help1 ;;
-	--shell00 | -sh00) shell00 ; rm -rf src user_output ;;
-	--shell01 | -sh01) shell01 ; rm -rf src user_output ;;
+	--shell00 | -sh00) init ; shell00 ; rm -rf src user_output ;;
+	--shell01 | -sh01) init ; shell01 ; rm -rf src user_output ;;
 	-c) ;;
 	*)
 		man srcs/help1 ;;

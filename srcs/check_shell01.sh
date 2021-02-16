@@ -23,6 +23,7 @@ function	check_sh01_ex01() {
 	DIFF=$(diff -q $usr_out/print_groups $usr_out/res_out) 
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex01/print_groups.sh${diff_ko}${NOCOLOR}\n"
+		$DIFF
 	else
 		printf "${uni_success}ex01/print_groups.sh${diff_ok}${NOCOLOR}\n"
 	fi
@@ -61,12 +62,43 @@ function	check_sh01_ex03() {
 	if [ ! -e $usr_out ] || [ ! -e tests/shell01/ex03 ] ; then
 		mkdir $usr_out tests/shell01/ex03 2> /dev/null
 	fi
-	USER_OUTPUT=$(bash $current_dir/src/shell01/ex03/count_files.sh)
-	RES=$(find . -type f -o -type d | wc -l | bc)
-	if [ "$USER_OUTPUT" != "$RES" ] ; then
+	cd $current_dir/tests
+	bash $current_dir/src/shell01/ex03/count_files.sh > $usr_out/count_files_out
+	find . -type f -o -type d | wc -l | bc > $usr_out/res_out
+	DIFF=$(diff $usr_out/count_files_out $usr_out/res_out)
+	if [ "$DIFF" != "" ] ; then
+		echo $DIFF
 		printf "${uni_fail}ex03/count_files.sh${diff_ko}${NOCOLOR}\n"
 	else
 		printf "${uni_success}ex03/count_files.sh${diff_ok}${NOCOLOR}\n"
+	fi
+	cd $current_dir
+}
+
+function	check_sh01_ex04() {
+	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
+	if ! file_exists "src/shell01/ex04/MAC.sh" ; then
+		msg_nothing_turned_in "ex04/MAC.sh"
+		return
+	fi
+	usr_out=$current_dir/user_output/shell01/ex04
+	if [ ! -e $usr_out ] || [ ! -e tests/shell01/ex04 ] ; then
+		mkdir $usr_out tests/shell01/ex04 2> /dev/null
+	fi
+	USER_OUTPUT=$(bash $current_dir/src/shell01/ex04/MAC.sh)
+	RES=$(ifconfig -a | awk '/ether/' | sed -e "s/ether//g" | tr -d "[[:blank:]]")
+	printf "${BLUE}Testing with ifconfig...\n${NOCOLOR}"
+	if [ "$USER_OUTPUT" != "$RES" ] ; then
+		printf "${uni_fail}ex04/MAC.sh${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex04/MAC.sh${diff_ok}${NOCOLOR}\n"
+	fi
+	printf "${BLUE}Testing without ifconfig...\n${NOCOLOR}"
+	RES=$(bash $current_dir/src/shell01/ex04/MAC.sh | grep -E "[[:alpha:]]{2}:")
+	if [ "$RES" != "" ] ; then
+		printf "${uni_success}ex04/MAC.sh${diff_ok}${NOCOLOR}\n"
+	else
+		printf "${uni_fail}ex04/MAC.sh${diff_ko}${NOCOLOR}\n"
 	fi
 }
 
@@ -78,7 +110,7 @@ function	shell01() {
 	check_sh01_ex01
 	check_sh01_ex02
 	check_sh01_ex03
-#	check_sh01_ex04
+	check_sh01_ex04
 #	check_sh01_ex05
 #	check_sh01_ex06
 #	check_sh01_ex07

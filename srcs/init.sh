@@ -22,15 +22,18 @@ function	clean_before_launch() {
 }
 
 function	ask_username() {
-	USERNAME=$(whoami)
-	printf "Are you $USERNAME ? [Y/n] "
+	if [ "$USER_NAME" == "gpatingr" ] ; then
+		printf "Welcome, you!\n\n"
+		return
+	fi
+	printf "Are you $USER_NAME ? [Y/n] "
 	read
-	printf "\n"
 	if [ "$REPLY" == "n" ] || [ "$REPLY" == "N" ] ; then
 		printf "Enter the username of the piscineux being corrected: "
 		read
+		printf "\n"
 		if [ "$REPLY" != "" ] ; then
-			USERNAME=$REPLY
+			USER_NAME=$REPLY
 		fi
 	fi
 }
@@ -39,17 +42,21 @@ function	init() {
 	clean_before_launch
 	mkdir src user_output
 	print_welcome
+# USER_NAME=gpatingr # so that i dont have to rewrite everytime
 	ask_username
+	deepthought_init
 }
 
 function	deepthought_init() {
-	printf "\$> hostname\n" > DEEPTHOUGHT
-	hostname >> DEEPTHOUGHT
+	printf "\$> hostname; uname -msr\n" > DEEPTHOUGHT
+	hostname >> DEEPTHOUGHT ; uname -msr >> DEEPTHOUGHT
 	printf "\$> date\n" >> DEEPTHOUGHT
 	date >> DEEPTHOUGHT
 	printf "\$> gcc --version\n" >> DEEPTHOUGHT
 	gcc --version | grep -e "gcc" >> DEEPTHOUGHT
 	printf "\$> clang --version\n" >> DEEPTHOUGHT
 	clang --version >> DEEPTHOUGHT
-	printf "\nReady for testing\n" >> DEEPTHOUGHT
+	printf "\$>echo \$USER_NAME\n" >> DEEPTHOUGHT
+	echo $USER_NAME >> DEEPTHOUGHT
+	printf "\nReady for testing\n\n" >> DEEPTHOUGHT
 }
