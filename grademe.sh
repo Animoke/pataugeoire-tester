@@ -26,7 +26,6 @@ source	srcs/check_shell01.sh
 
 init
 deepthought_init
-print_welcome
 
 function	cleanup() {
 	rm -rf src user_output

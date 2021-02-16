@@ -156,19 +156,26 @@ function	check_sh00_ex02() {
 }
 
 function	check_sh00_ex03() {
+
+	# grep commands
+	# grep -m 1 -E '^Credentials cache: API:[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}$' klist.txt
+	# head -2 klist.txt | tail -1 | grep -E "^ {8}Principal: $USERNAME@42.FR$"
+	# head -3 klist.txt | tail -1 | grep -E "^$"
+
 	printf " ${YELLOW}${UNDERLINE}ex03:\n${NOCOLOR}"
 	printf "\n= ex03 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex03/klist.txt" ; then
 		msg_nothing_turned_in "ex03/klist.txt"
 		return
 	fi
-	printf "${GREEN} Are you running this test on the same computer you generated your ticket on? (i.e: 42 mac)${NOCOLOR} [Y/n] "
-	read
+#	printf "${GREEN} Are you running this test on the same computer you generated your ticket on? (i.e: 42 mac)${NOCOLOR} [Y/n] "
+#	read
 	printf "\n"
-#REPLY="n"
+REPLY="y"
 	if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ] || [ ! "$REPLY" ] ; then
 		klist > tests/shell00/ex03/klist.txt 2> /dev/null
-		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
+#		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
+		DIFF=$(cat $src_path/shell00/ex03/klist.txt | grep -e "Credential cache: API:")
 		if [ "$DIFF" != "" ] ; then
 			printf "${uni_fail}ex03/klist.txt${diff_ko}${NOCOLOR}\n"
 			diff src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt >> DEEPTHOUGHT
