@@ -37,9 +37,11 @@ case $1 in
 	--shell01 | -sh01) init ; shell01 ; rm -rf src user_output ;;
 	-c) ;;
 	*)
-		man srcs/help1 ;;
+#		man srcs/help ;;
+		init ; shell00 ; shell01 ; rm -rf src user_output ;;
 esac
-
+printf "${GREEN}${BOLD}\n\nThank you for using pateaugeoire!\n${NOCOLOR}"
+printf "\nThank you for using pateaugeoire!\n" >> DEEPTHOUGHT
 
 
 #shell00

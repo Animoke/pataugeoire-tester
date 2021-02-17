@@ -342,6 +342,6 @@ function	shell00() {
 	check_sh00_ex07
 	check_sh00_ex08
 	check_sh00_ex09
-	printf "${GREEN}\nAll shell00 tests are done. Thank you for using pateaugeoire!\n${NOCOLOR}"
-	printf "\n\nAll shell00 tests are done. Thank you for using pateaugeoire!\n" >> DEEPTHOUGHT
+	printf "${GREEN}\nAll shell00 tests are done.\n\n${NOCOLOR}"
+	printf "\n\nAll shell00 tests are done.\n" >> DEEPTHOUGHT
 }
