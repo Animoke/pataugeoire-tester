@@ -20,9 +20,10 @@ source	srcs/var/env.sh
 source	srcs/init.sh
 source	srcs/msg.sh
 source	srcs/gfx.sh
-source	srcs/check_file.sh
-source	srcs/check_shell00.sh
-source	srcs/check_shell01.sh
+source	srcs/checks/check_file.sh
+source	srcs/checks/check_shell00.sh
+source	srcs/checks/check_shell01.sh
+source	srcs/checks/check_c00.sh
 
 function	cleanup() {
 	rm -rf src user_output
@@ -33,13 +34,16 @@ trap cleanup EXIT
 case $1 in
 	--help | -h) 
 		man srcs/help1 ;;
-	--shell00 | -sh00) init ; shell00 ; rm -rf src user_output ;;
-	--shell01 | -sh01) init ; shell01 ; rm -rf src user_output ;;
+	--shell00 | -sh00) init ; shell00 ;;
+	--shell01 | -sh01) init ; shell01 ;;
+	--c00 | -c00) init ; c00 ;;
 	-c) ;;
 	*)
 #		man srcs/help ;;
-		init ; shell00 ; shell01 ; rm -rf src user_output ;;
+		init ; shell00 ; shell01 ;; 
 esac
+
+rm -rf src user_output 
 printf "${GREEN}${BOLD}\n\nThank you for using pateaugeoire!\n${NOCOLOR}"
 printf "\nThank you for using pateaugeoire!\n" >> DEEPTHOUGHT
 
