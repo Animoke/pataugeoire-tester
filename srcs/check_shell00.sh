@@ -309,6 +309,7 @@ function	shell00() {
 	mkdir src/shell00 user_output/shell00
 	print_current_part "shell00"
 	cp -r $src_path/shell00/ex* ./src/shell00  # copying src files
+	printf "Testing Shell00:\n\n" >> DEEPTHOUGHT
 	
 	check_sh00_ex00
 	check_sh00_ex01

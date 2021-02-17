@@ -15,6 +15,7 @@ function	file_exists() {
 		return 0
 	else
 		printf "\$>${1} is missing. Skipping...\n\n" >> ${current_dir}/DEEPTHOUGHT
+echo $1
 		return 1
 	fi
 }

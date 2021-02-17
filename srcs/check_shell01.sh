@@ -102,6 +102,51 @@ function	check_sh01_ex04() {
 	fi
 }
 
+function	check_sh01_ex05() {
+	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
+	if ! ls src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\" > /dev/null ; then
+		msg_nothing_turned_in "\"\\\?\$\*\'MaRViN\'\*\$\?\\\""
+		return
+	fi
+	FILE_CONTENT=$(cat -e src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\")
+	if [ "$FILE_CONTENT" != "42" ] ; then
+		printf "${uni_fail}ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\"${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\"${diff_ok}${NOCOLOR}\n"
+	fi
+}
+
+function	check_sh01_ex06() {
+	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
+	if ! ls src/shell01/ex06/skip.sh > /dev/null ; then
+		msg_nothing_turned_in "ex06/skip.sh"
+		return
+	fi
+	usr_out=$current_dir/user_output/shell01/ex06
+	if [ ! -e $usr_out ] ; then
+		mkdir $usr_out tests/shell01/ex06 2> /dev/null
+	fi
+	cd $current_dir
+	bash $current_dir/src/shell01/ex06/skip.sh > $usr_out/skip_out
+	ls -l | awk 'NR % 2' > $usr_out/res_out
+	DIFF=$(diff -q $usr_out/skip_out $usr_out/res_out)
+	if [ "$DIFF" != "" ] ; then
+		printf "${uni_fail}ex06/skip.sh${diff_ko}${NOCOLOR}\n"
+	else
+		printf "${uni_success}ex06/skip.sh${diff_ok}${NOCOLOR}\n"
+	fi
+}
+
+function	check_sh01_ex07() {
+	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"	
+}
+
+function	check_sh01_ex08() {
+	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"	
+}
+
 function	shell01() {
 	mkdir src/shell01 user_output/shell01 
 	print_current_part "shell01"
@@ -111,11 +156,10 @@ function	shell01() {
 	check_sh01_ex02
 	check_sh01_ex03
 	check_sh01_ex04
-#	check_sh01_ex05
-#	check_sh01_ex06
-#	check_sh01_ex07
-#	check_sh01_ex08
-#	check_sh01_ex01
+	check_sh01_ex05
+	check_sh01_ex06
+	check_sh01_ex07
+	check_sh01_ex08
 
 	rm -rf src user_output
 }
