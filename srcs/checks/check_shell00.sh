@@ -327,6 +327,7 @@ function	check_sh00_ex09() {
 }
 
 function	shell00() {
+	ask_username
 	mkdir src/shell00 user_output/shell00
 	print_current_part "shell00"
 	cp -r $src_path/shell00/ex* ./src/shell00  # copying src files

@@ -26,6 +26,7 @@ function	ask_username() {
 		printf "Welcome, you!\n\n"
 		return
 	fi
+	USER_NAME=$USER
 	printf "Are you $USER_NAME ? [Y/n] "
 	read
 	if [ "$REPLY" == "n" ] || [ "$REPLY" == "N" ] ; then
@@ -43,7 +44,7 @@ function	init() {
 	mkdir src user_output
 	print_welcome
 # USER_NAME=gpatingr # so that i dont have to rewrite everytime
-	ask_username
+#	ask_username    # should ask only for sh00
 	deepthought_init
 }
 

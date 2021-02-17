@@ -11,6 +11,7 @@
 
 function	check_sh01_ex01() {
 	printf " ${YELLOW}${UNDERLINE}ex01:\n${NOCOLOR}"
+	printf "\n= ex01 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell01/ex01/print_groups.sh" ; then
 		msg_nothing_turned_in "ex01/print_groups.sh"
 		return
@@ -23,15 +24,19 @@ function	check_sh01_ex01() {
 	DIFF=$(diff -q $usr_out/print_groups $usr_out/res_out) 
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex01/print_groups.sh${diff_ko}${NOCOLOR}\n"
+		diff $usr_out/print_groups $usr_out/res_out >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 		$DIFF
 	else
 		printf "${uni_success}ex01/print_groups.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
 
 function	check_sh01_ex02() {
 	printf " ${YELLOW}${UNDERLINE}ex02:\n${NOCOLOR}"
+	printf "\n= ex02 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell01/ex02/find_sh.sh" ; then
 		msg_nothing_turned_in "ex02/find_sh.sh"
 		return
@@ -46,14 +51,18 @@ function	check_sh01_ex02() {
 	DIFF=$(diff $usr_out/find_sh_out $usr_out/res_out) 
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex02/find_sh.sh${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
+		echo $DIFF >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/find_sh.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
 
 function	check_sh01_ex03() {
 	printf " ${YELLOW}${UNDERLINE}ex03:\n${NOCOLOR}"
+	printf "\n= ex03 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell01/ex03/count_files.sh" ; then
 		msg_nothing_turned_in "ex03/count_files.sh"
 		return
@@ -69,14 +78,18 @@ function	check_sh01_ex03() {
 	if [ "$DIFF" != "" ] ; then
 		echo $DIFF
 		printf "${uni_fail}ex03/count_files.sh${diff_ko}${NOCOLOR}\n"
+		echo $DIFF >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/count_files.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
 
 function	check_sh01_ex04() {
 	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
+	printf "\n= ex04 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell01/ex04/MAC.sh" ; then
 		msg_nothing_turned_in "ex04/MAC.sh"
 		return
@@ -88,22 +101,31 @@ function	check_sh01_ex04() {
 	USER_OUTPUT=$(bash $current_dir/src/shell01/ex04/MAC.sh)
 	RES=$(ifconfig -a | awk '/ether/' | sed -e "s/ether//g" | tr -d "[[:blank:]]")
 	printf "${BLUE}Testing with ifconfig...\n${NOCOLOR}"
+	printf "Testing with ifconfig...\n" >> DEEPTHOUGHT
 	if [ "$USER_OUTPUT" != "$RES" ] ; then
 		printf "${uni_fail}ex04/MAC.sh${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
+		diff <(echo $USER_OUTPUT) <($RES)
 	else
 		printf "${uni_success}ex04/MAC.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "${BLUE}Testing without ifconfig...\n${NOCOLOR}"
-	RES=$(bash $current_dir/src/shell01/ex04/MAC.sh | grep -E "[[:alpha:]]{2}:")
+	printf "Testing without ifconfig...\n" >> DEEPTHOUGHT
+	RES=$(bash $current_dir/src/shell01/ex04/MAC.sh | grep -E "^[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}$")
 	if [ "$RES" != "" ] ; then
 		printf "${uni_success}ex04/MAC.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex04/MAC.sh${diff_ko}${NOCOLOR}\n"
+		printf "Bad formatting. Please check spaces or newlines.\n" >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	fi
 }
 
 function	check_sh01_ex05() {
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
+	printf "\n= ex05 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! ls src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\" > /dev/null ; then
 		msg_nothing_turned_in "\"\\\?\$\*\'MaRViN\'\*\$\?\\\""
 		return
@@ -111,13 +133,17 @@ function	check_sh01_ex05() {
 	FILE_CONTENT=$(cat -e src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\")
 	if [ "$FILE_CONTENT" != "42" ] ; then
 		printf "${uni_fail}ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\"${diff_ko}${NOCOLOR}\n"
+		echo "$FILE_CONTENT != 42" >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\"${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 }
 
 function	check_sh01_ex06() {
 	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
+	printf "\n= ex06 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! ls src/shell01/ex06/skip.sh > /dev/null ; then
 		msg_nothing_turned_in "ex06/skip.sh"
 		return
@@ -129,22 +155,29 @@ function	check_sh01_ex06() {
 	cd $current_dir
 	bash $current_dir/src/shell01/ex06/skip.sh > $usr_out/skip_out
 	ls -l | awk 'NR % 2' > $usr_out/res_out
-	DIFF=$(diff -q $usr_out/skip_out $usr_out/res_out)
+	DIFF=$(diff $usr_out/skip_out $usr_out/res_out)
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex06/skip.sh${diff_ko}${NOCOLOR}\n"
+		echo $DIFF >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex06/skip.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 }
 
 function	check_sh01_ex07() {
 	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
+	printf "\n= ex07 =\n==========================================\n" >> DEEPTHOUGHT
 	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"	
+	printf "\nThis exercise is not supported yet.\n" >> DEEPTHOUGHT	
 }
 
 function	check_sh01_ex08() {
 	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	printf "\n= ex08 =\n==========================================\n" >> DEEPTHOUGHT
 	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"	
+	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT	
 }
 
 function	shell01() {

@@ -16,15 +16,10 @@ function	check_c00_ex00() {
 		msg_nothing_turned_in "ex00/ft_putchar.c"
 		return
 	fi
-	NORME=$(ruby ~/.norminette/norminette.rb -R CheckForbiddenSourceHeader src/c00/ex00/ft_putchar.c)
-	NORME_RES=$(echo $NORME | wc -l)
-ruby ~/.norminette/norminette.rb -R CheckForbiddenSourceHeader src/c00/ex00/ft_putchar.c | wc -l | cat -e
-	PROTOTYPE=$(grep -e "ft_putchar(char c)" ../piscine/c00/ex00/ft_putchar.c | tail -1 | grep -E "^void")
-	if [ "$NORME_RES" == "1" ] ; then
-		printf "norme ok\n"
-	else
-		printf "norme ko\n"
-	fi
+	PROTOTYPE=$(grep -E '^void'$'\t{1,}ft_putchar\([^)]+\)\)' src/c00/ex00/ft_putchar.c)
+	grep -P '^void'$'\t{1,}ft_putchar\([^)]+\)\)' src/c00/ex00/ft_putchar.c
+	grep -E "^void'$'\t{1,}ft_putchar\([^)]+\)\)" src/c00/ex00/ft_putchar.c
+	check_norme "src/c00/ex00/ft_putchar.c" "src/c00/ex00/ft_putchar.c"
 	if [ "$PROTOTYPE" != "" ] ; then
 		printf "prototype ok\n"
 	else
