@@ -223,33 +223,42 @@ function	check_sh00_ex04() {
 
 function	check_sh00_ex05() {
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
+	printf "\n= ex05 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex05/git_commit.sh" ; then
 		msg_nothing_turned_in "ex05/git_commit.sh"
 		return
 	fi
-	cd $src_path/shell00/ex05
-	USER_OUTPUT=$(bash git_commit.sh | cat)
-	if [ ${#USER_OUTPUT} -eq 204 ] ; then
+	USER_OUTPUT=$(bash $src_path/shell00/ex05/git_commit.sh)
+	RES=$(git log -n 5 --pretty="%H")
+	DIFF=$(diff <(echo "$USER_OUTPUT") <(echo "$RES"))
+	if [ "$USER_OUTPUT" == "$RES" ] ; then
 		printf "${uni_success}ex05/git_commit.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex05/git_commit.sh${diff_ko}${NOCOLOR}\n"
+		printf "$DIFF\n" >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
 
 function	check_sh00_ex06() {
 	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
+	printf "\n= ex06 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex06/git_ignore.sh" ; then
 		msg_nothing_turned_in "ex06/git_ignore.sh"
 		return
 	fi
-	cd $src_path/shell00/ex06
-	USER_OUTPUT=$(bash git_ignore.sh)
+	USER_OUTPUT=$(bash $src_path/shell00/ex06/git_ignore.sh)
 	RES=$(git ls-files -i -o --exclude-standard)
+	DIFF=$(diff <(echo "$USER_OUTPUT") <(echo "$RES"))
 	if [ "$USER_OUTPUT" == "$RES" ] ; then
 		printf "${uni_success}ex05/git_ignore.sh${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex05/git_ignore.sh${diff_ko}${NOCOLOR}\n"
+		printf "$DIFF\n" >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> DEEPTHOUGHT
 	fi
 	cd $current_dir
 
@@ -257,6 +266,7 @@ function	check_sh00_ex06() {
 
 function	check_sh00_ex07() {
 	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
+	printf "\n= ex07 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex07/b" ; then
 		msg_nothing_turned_in "ex07/b"
 		return
@@ -264,13 +274,17 @@ function	check_sh00_ex07() {
 	DIFF=$(diff -q src/shell00/ex07/b tests/shell00/ex07/b)
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex07/b${diff_ko}${NOCOLOR}\n"
+		diff src/shell00/ex07/b tests/shell00/ex07/b >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> DEEPTHOUGHT
 	else
 		printf "${uni_success}ex07/b${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> DEEPTHOUGHT
 	fi
 }
 
 function	check_sh00_ex08() {
 	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	printf "\n= ex08 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex08/clean" ; then
 		msg_nothing_turned_in "ex08/clean"
 		return
@@ -282,8 +296,11 @@ function	check_sh00_ex08() {
 	bash clean > /dev/null
 	if ls | grep -e "test2" || ls dir1 | grep -e "test7" || ls dir1 | grep -e "test4" ; then
 		printf "${uni_fail}ex08/clean${diff_ko}${NOCOLOR}\n"
+		ls -l | grep -e "test2" ; ls -l dir1 | grep -e "test7" ; ls -l dir1 | grep -e "test4" >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex08/clean${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 	rm -rf tests/shell00/ex08
@@ -291,6 +308,7 @@ function	check_sh00_ex08() {
 
 function	check_sh00_ex09() {
 	printf " ${YELLOW}${UNDERLINE}ex09:\n${NOCOLOR}"
+	printf "\n= ex09 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex09/ft_magic" ; then
 		msg_nothing_turned_in "ex09/ft_magic"
 		return
@@ -300,8 +318,11 @@ function	check_sh00_ex09() {
 	DIFF=$(diff -q src/shell00/ex09/ft_magic tests/shell00/ex09/ft_magic)
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex08/clean${diff_ko}${NOCOLOR}\n"
+		diff -q src/shell00/ex09/ft_magic tests/shell00/ex09/ft_magic >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex08/clean${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
 }
 
@@ -321,4 +342,6 @@ function	shell00() {
 	check_sh00_ex07
 	check_sh00_ex08
 	check_sh00_ex09
+	printf "${GREEN}\nAll shell00 tests are done. Thank you for using pateaugeoire!\n${NOCOLOR}"
+	printf "\n\nAll shell00 tests are done. Thank you for using pateaugeoire!\n" >> DEEPTHOUGHT
 }
