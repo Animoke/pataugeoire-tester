@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    check_file.sh                                  by Animoke (animoke.dev)   #
@@ -21,16 +21,33 @@ echo $1
 }
 
 function	check_norme() {
-	NORME=$(ruby ~/.norminette/norminette.rb -R CheckForbiddenSourceHeader $1)
-	NORME_RES=$(echo $NORME | wc -l)
-	FILE_NB=$(find $2 -type f -o -type d | wc -l | bc)
-	if [ "$NORME_RES" == "$FILE_NB" ] ; then
-		printf "norme ok\n"
+	norme_out=user_output/norme
+	if [ ! -e $norme_out ] ; then
+		mkdir $norme_out
+	fi
+	ruby ~/.norminette/norminette.rb -R CheckForbiddenSourceHeader $1 > $norme_out/tmp
+	NORME_RES=$(grep -e "Error" -e "Warning" $norme_out/tmp)
+#	echo $NORME $NORME_RES $FILE_NB
+	if [ "$NORME_RES" == "" ] ; then
+		printf "${uni_success} Norme: ./$1\n"
+		printf "Norme: $1: OK\n" >> $current_dir/DEEPTHOUGHT
+		NORME=0
 	else
-		printf "norme ko\n"
+		printf "${uni_fail} Norme: ./$1\n"
+		printf "Norme: $1: KO\n" >> $current_dir/DEEPTHOUGHT
+		NORME=1
 	fi
 }
 
 function	check_prototype() {
-	PROTOTYPE=$(grep -e)
+	TYPE=$1
+	FUNC_NAME=$2
+	FILE=$3
+	PROTOTYPE=$(grep -E "^$TYPE"$'\t{1,}'"$FUNC_NAME"'\([^)]+\)' $FILE)
+	if [ "$PROTOTYPE" == "" ] ; then
+		printf "$FILE: $FUNC_NAME: ${RED}Bad prototype.${NOCOLOR}\n"
+	else
+		return
+	fi
+	#echo $PROTOTYPE
 }

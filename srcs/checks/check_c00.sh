@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    check_c00.sh                                   by Animoke (animoke.dev)   #
@@ -16,14 +16,11 @@ function	check_c00_ex00() {
 		msg_nothing_turned_in "ex00/ft_putchar.c"
 		return
 	fi
-	PROTOTYPE=$(grep -E '^void'$'\t{1,}ft_putchar\([^)]+\)\)' src/c00/ex00/ft_putchar.c)
-	grep -P '^void'$'\t{1,}ft_putchar\([^)]+\)\)' src/c00/ex00/ft_putchar.c
-	grep -E "^void'$'\t{1,}ft_putchar\([^)]+\)\)" src/c00/ex00/ft_putchar.c
-	check_norme "src/c00/ex00/ft_putchar.c" "src/c00/ex00/ft_putchar.c"
-	if [ "$PROTOTYPE" != "" ] ; then
-		printf "prototype ok\n"
-	else
-		printf "prototype ko\n"
+#	PROTOTYPE=$(grep -E "^$TYPE"$'\t{1,}'"$FUNC_NAME"'\([^)]+\)' src/c00/ex00/ft_putchar.c)
+	check_norme "src/c00/ex00/ft_putchar.c"
+	check_prototype "void" "ft_putchar" "src/c00/ex00/ft_putchar.c"
+	if [ "$NORME" != "0" ] ; then
+		return
 	fi
 	if ! diff -q src/c00/ex00/z tests/c00/ex00/z ; then
 		printf "${uni_fail}ex00/ft_putchar.c${diff_ko}${NOCOLOR}\n"

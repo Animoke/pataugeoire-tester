@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    env.sh                                         by Animoke (animoke.dev)   #

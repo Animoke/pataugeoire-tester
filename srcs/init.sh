@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    init.sh                                        by Animoke (animoke.dev)   #
@@ -54,10 +54,10 @@ function	deepthought_init() {
 	printf "\$> date\n" >> DEEPTHOUGHT
 	date >> DEEPTHOUGHT
 	printf "\$> gcc --version\n" >> DEEPTHOUGHT
-	gcc --version | grep -e "gcc" >> DEEPTHOUGHT
+	gcc --version | grep -e "gcc" >> DEEPTHOUGHT 2> /dev/null
 	printf "\$> clang --version\n" >> DEEPTHOUGHT
-	clang --version >> DEEPTHOUGHT
-	printf "\$>echo \$USER_NAME\n" >> DEEPTHOUGHT
+	clang --version >> DEEPTHOUGHT 2>  /dev/null
+	printf "\$> echo \$USER_NAME\n" >> DEEPTHOUGHT
 	echo $USER_NAME >> DEEPTHOUGHT
 	printf "\nReady for testing\n\n" >> DEEPTHOUGHT
 }

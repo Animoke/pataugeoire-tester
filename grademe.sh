@@ -1,7 +1,7 @@
 #!/bin/bash
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    grademe.sh                                     by Animoke (animoke.dev)   #

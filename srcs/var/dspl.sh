@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    piscine-ultimate-tester                                                   #
+#    pateaugeoire-tester                                                       #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    dspl.sh                                        by Animoke (animoke.dev)   #
@@ -16,5 +16,5 @@ uni_fail=" ${RED}✗${NOCOLOR} "
 uni_arrow="➥ "
 uni_sep="❯ "
 uni_rev_sep=" ❮ "
-diff_ok=" ${GREEN}[OK]${NOCOLOR} "
-diff_ko=" ${RED}[KO]${NOCOLOR} "
+diff_ok="\t${GREEN}[OK]${NOCOLOR} "
+diff_ko="\t${RED}[KO]${NOCOLOR} "
