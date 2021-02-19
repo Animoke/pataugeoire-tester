@@ -6,7 +6,7 @@
 /*   By: gpatingr <gpatingr@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 00:06:00 by gpatingr          #+#    #+#             */
-/*   Updated: 2021/02/19 00:08:38 by gpatingr         ###   ########.fr       */
+/*   Updated: 2021/02/19 16:00:14 by gpatingr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void	ft_is_negative(int n);
 void	ft_print_comb(void);
 void	ft_print_comb2(void);
 void	ft_putnbr(int nb);
+
+// c01
+void	ft_ft(int *nbr);
 
 #endif

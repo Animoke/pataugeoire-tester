@@ -25,6 +25,7 @@ source	srcs/checks/check_file.sh
 source	srcs/checks/check_shell00.sh
 source	srcs/checks/check_shell01.sh
 source	srcs/checks/check_c00.sh
+source	srcs/checks/check_c01.sh
 
 #function	cleanup() {
 #	rm -rf src user_output
@@ -37,10 +38,11 @@ case $1 in
 	--shell00 | -sh00) init ; shell00 ;;
 	--shell01 | -sh01) init ; shell01 ;;
 	--c00 | -c00) init ; c00 ;;
+	--c01 | -c01) init ; c01 ;;
 	-c) ;;
 	*)
 #		man srcs/help ;;
-		init ; shell00 ; shell01 ; c00 ;; 
+		init ; shell00 ; shell01 ; c00 ; c01;; 
 esac
 
 #rm -rf src user_output 

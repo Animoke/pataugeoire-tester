@@ -193,7 +193,7 @@ REPLY="y"
 	if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ] || [ ! "$REPLY" ] ; then
 #		klist > tests/shell00/ex03/klist.txt 2> /dev/null
 #		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
-		DIFF=$(cat $src_path/shell00/ex03/klist.txt | grep -e "Credential cache: API:")
+#		DIFF=$(cat $src_path/shell00/ex03/klist.txt | grep -e "Credential cache: API:")
 		if [ "$DIFF_LINE_ONE" != "" ] && [ "$DIFF_LINE_TWO" != "" ] && [ "$DIFF_LINE_THREE" == "" ] && [ "$DIFF_LINE_FOUR" != "" ] && [ "$DIFF_LINE_FIVE" != "" ] && [ "$DIFF_LINE_SIX" != "" ] ; then
 			printf "${uni_success}ex03/klist.txt\t\t${diff_ok}${NOCOLOR}\n"
 			printf "diff ok :D\n" >> DEEPTHOUGHT

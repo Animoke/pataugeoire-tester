@@ -98,9 +98,9 @@ function	check_sh01_ex04() {
 	if [ ! -e $usr_out ] || [ ! -e tests/shell01/ex04 ] ; then
 		mkdir $usr_out tests/shell01/ex04 2> /dev/null
 	fi
-	USER_OUTPUT=$(bash $current_dir/src/shell01/ex04/MAC.sh)
+	bash $current_dir/src/shell01/ex04/MAC.sh > $usr_out/user.out
 	ifconfig -a | awk '/ether/ {print$2}' > $usr_out/res_out
-	DIFF=$(diff $usr_out/res_out <(echo $USER_OUTPUT))
+	DIFF=$(diff $usr_out/res_out $usr_out/user.out)
 	printf "${BLUE}Testing differences with ifconfig...\n${NOCOLOR}"
 	printf "Testing differences with ifconfig...\n" >> DEEPTHOUGHT
 	if [ "$DIFF" != "" ] ; then
