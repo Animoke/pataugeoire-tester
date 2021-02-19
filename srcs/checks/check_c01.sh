@@ -130,7 +130,6 @@ function	check_c01_ex03() {
 		return
 	fi
 	cd $usr_out
-	local RES="0123456789"
 	local USER_OUTPUT=$(./user.out)
 	local NUMBER=(42 13 1337 64 97 -42 -2147483648 -1337 2147483647 -4 6473287 -328 612567 106)
 	local i=0
@@ -179,7 +178,6 @@ function	check_c01_ex04() {
 		return
 	fi
 	cd $usr_out
-	local RES="0123456789"
 	local USER_OUTPUT=$(./user.out)
 	local NUMBER=(42 13 1337 64 97 -42 -2147483648 -1337 2147483647 -4 6473287 -328 612567 106)
 	local i=0
@@ -212,30 +210,30 @@ function	check_c01_ex05() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
 	printf "= ex05 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c01/ex05/ft_print_comb.c" ; then
-		msg_nothing_turned_in "ex05/ft_print_comb.c"
+	if ! file_exists "src/c01/ex05/ft_putstr.c" ; then
+		msg_nothing_turned_in "ex05/ft_putstr.c"
 		return
 	fi
-	check_norme "src/c01/ex05/ft_print_comb.c"
-	check_prototype "void" "ft_print_comb" "src/c01/ex05/ft_print_comb.c"
+	check_norme "src/c01/ex05/ft_putstr.c"
+	check_prototype "void" "ft_putstr" "src/c01/ex05/ft_putstr.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c01/ex05/main.c ./src/c01/ex05/ft_print_comb.c 
+	compile_tests ./tests/c01/ex05/main.c ./src/c01/ex05/ft_putstr.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex05/ft_print_comb.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex05/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
-	local RES=""
+	local RES="!\"#\$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\`abcdefghijklmnopqrstuvwxyz{|}~"
 	cd $usr_out
-	local USER_OUTPUT=$(./user.out)
+	local USER_OUTPUT=$(./user.out $RES)
 	if [ "$RES" != "$USER_OUTPUT" ]; then
-		printf "${uni_fail}ex05/ft_print_comb.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex05/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo $RES) <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_success}ex05/ft_print_comb\t\t${diff_ok}${NOCOLOR}\n"
+		printf "${uni_success}ex05/ft_putstr\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
@@ -246,32 +244,41 @@ function	check_c01_ex06() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
 	printf "= ex06 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c01/ex06/ft_print_comb2.c" ; then
-		msg_nothing_turned_in "ex06/ft_print_comb2.c"
+	if ! file_exists "src/c01/ex06/ft_strlen.c" ; then
+		msg_nothing_turned_in "ex06/ft_strlen.c"
 		return
 	fi
-	check_norme "src/c01/ex06/ft_print_comb2.c"
-	check_prototype "void" "ft_print_comb2" "src/c01/ex06/ft_print_comb2.c"
+	check_norme "src/c01/ex06/ft_strlen.c"
+	check_prototype "int" "ft_strlen" "src/c01/ex06/ft_strlen.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c01/ex06/main.c ./src/c01/ex06/ft_print_comb2.c 
+	compile_tests ./tests/c01/ex06/main.c ./src/c01/ex06/ft_strlen.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex06/ft_print_comb2.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex06/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	./user.out > res.out
-	DIFF=$(diff res.out $current_dir/tests/c01/ex06/comb_res)
-	if [ "$DIFF" != "" ]; then
-		printf "${uni_fail}ex06/ft_print_comb2.c\t\t${diff_ko}${NOCOLOR}\n"
-		echo $DIFF >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex06/ft_print_comb2\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
+	local i=1
+	while [ $i -le 8 ]
+	do
+		local FILE=$current_dir/tests/c01/ex06/files/$i
+		local CAT=$(cat $FILE | tr -d \\n)
+		local RES=$(echo $CAT | wc -c)
+		local USER_OUTPUT=$(./user.out "$CAT")
+		printf "> test $i\n" >> $current_dir/DEEPTHOUGHT
+		if [ "$USER_OUTPUT" == "$RES" ] ; then
+			printf "${uni_success}ex04/ft_ultimate_div_mod.c\t${diff_ok}${NOCOLOR}\n"
+			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		else
+			printf "${uni_fail}ex04/ft_ultimate_div_mod.c\t${diff_ko}${NOCOLOR}\n"
+			diff <(echo $RES) <(echo $USER_OUTPUT)
+			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+		fi
+		((j+=2))
+		((i++))
+	done
 	cd $current_dir
 }
 
@@ -332,8 +339,8 @@ function	c01() {
 	check_c01_ex02
 	check_c01_ex03
 	check_c01_ex04
-#	check_c01_ex05
-#	check_c01_ex06
+	check_c01_ex05
+	check_c01_ex06
 #	check_c01_ex07
 #	check_c01_ex08
 	rm -rf $current_dir/user_output/c01 $current_dir/src/c01
