@@ -12,10 +12,9 @@
 
 #include "../../header/user_functions.h"
 
-int		main(void)
+int		main(int ac, char **av)
 {
-	int		nbr = 13;
-	ft_ft(&nbr);
-	printf("%d", nbr);
+	(void)ac;
+	ft_putstr(av[1]);
 	return (0);
 }

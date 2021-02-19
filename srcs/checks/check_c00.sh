@@ -309,7 +309,6 @@ function	c00() {
 	mkdir src/c00 user_output/c00
 	print_current_part "c00"
 	cp -r $src_path/c00/ex* ./src/c00  # copying src files
-	printf "Testing c00:\n\n" >> DEEPTHOUGHT
 	
 	check_c00_ex00
 	check_c00_ex01
@@ -322,5 +321,5 @@ function	c00() {
 	check_c00_ex08
 	rm -rf $current_dir/user_output/c00 $current_dir/src/c00
 	printf "${GREEN}\nAll c00 tests are done.\n\n${NOCOLOR}"
-	printf "\n\nAll c00 tests are done.\n" >> DEEPTHOUGHT
+	printf "\n\nAll c00 tests are done.\n\n" >> DEEPTHOUGHT
 }

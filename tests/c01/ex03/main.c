@@ -12,10 +12,13 @@
 
 #include "../../header/user_functions.h"
 
-int		main(void)
+int		main(int ac, char **av)
 {
-	int		nbr = 13;
-	ft_ft(&nbr);
-	printf("%d", nbr);
+	(void)ac;
+	int	a = atoi(av[1]);
+	int	b = atoi(av[2]);
+	int	div, mod;
+	ft_div_mod(a, b, &div, &mod);
+	printf("div=%d, mod=%d", div, mod);
 	return (0);
 }

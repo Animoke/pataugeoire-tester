@@ -14,7 +14,7 @@ function	compile_tests() {
 	local USR_SRC=$2
 	
 	# Compiling
-	printf " ${BLUE}${BOLD}Compiling$USR_SRC ${NOCOLOR}"
+	printf " ${BLUE}${BOLD}Compiling $USR_SRC ${NOCOLOR}"
 	printf "\$> gcc -Wall -Werror -Wextra $MAIN $USR_SRC -o $usr_out\n" >> DEEPTHOUGHT
 	gcc -Wall -Werror -Wextra $MAIN $USR_SRC -o $usr_out/user.out 2>> DEEPTHOUGHT
 	if [ ! -e $usr_out/user.out ] ; then

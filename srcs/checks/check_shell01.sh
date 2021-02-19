@@ -104,24 +104,26 @@ function	check_sh01_ex04() {
 	printf "${BLUE}Testing differences with ifconfig...\n${NOCOLOR}"
 	printf "Testing differences with ifconfig...\n" >> DEEPTHOUGHT
 	if [ "$DIFF" != "" ] ; then
-		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR}"
 		echo $DIFF >> DEEPTHOUGHT
+		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}\n"
+		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}"
 		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "Note: this might not work on linux.\n"
 	printf "${BLUE}Testing without ifconfig...\n${NOCOLOR}"
 	printf "Testing without ifconfig...\n" >> DEEPTHOUGHT
 	RES=$(bash $current_dir/src/shell01/ex04/MAC.sh | grep -E "^[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}:[[:alnum:]]{2}$")
 	if [ "$RES" != "" ] ; then
-		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}\n"
+		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}"
 		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR} Note: this might not work on linux due to different behaviors.\n" 
+		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR}" 
 		printf "Bad formatting. Please check spaces or newlines.\n" >> DEEPTHOUGHT
 		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "Note: this might not work on linux.\n"
 }
 
 function	check_sh01_ex05() {

@@ -14,8 +14,11 @@
 
 int		main(void)
 {
-	int		nbr = 13;
-	ft_ft(&nbr);
-	printf("%d", nbr);
+	int	s = 13;
+	int	t = 42;
+	int	*a = &s;
+	int	*b = &t;
+	ft_swap(a, b);
+	printf("a=%d, b=%d", *a, *b);
 	return (0);
 }

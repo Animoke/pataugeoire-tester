@@ -167,15 +167,6 @@ function	check_sh00_ex03() {
 	if [ ! -e $usr_out ] ; then
 		mkdir $usr_out 2> /dev/null
 	fi
-	klist 2> $usr_out/klist_status.txt
-	KLIST_STATUS=$(cat $usr_out/klist_status.txt | grep -E "klist: No credentials cache found \(filename: [^)]+\)")
- 	if [ "$KLIST_STATUS" != "" ] ; then
-		printf "\n\$> $KLIST_STATUS\n" >> DEEPTHOUGHT
-		printf "${RED}No credentials cache found. Skipping...${NOCOLOR}\n"
-		printf "\nNo credentials cache found. Skipping...\n" >> DEEPTHOUGHT
-		return
-	fi
-
 	# grep commands
 	DIFF_LINE_ONE=$(grep -m 1 -E '^Credentials cache: API:[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}$' src/shell00/ex03/klist.txt)
 	DIFF_LINE_TWO=$(head -2 src/shell00/ex03/klist.txt | tail -1 | grep -E "^ {8}Principal: $USER_NAME@42.FR$")
@@ -184,29 +175,15 @@ function	check_sh00_ex03() {
 	DIFF_LINE_FIVE=$(head -5 src/shell00/ex03/klist.txt | tail -1 | grep -E "^[A-Z][a-z]{2} {1,2}[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2} [0-9]{4}  [A-Z][a-z]{2} {1,2}[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2} [0-9]{4}  krbtgt/42.FR@42.FR")
 	DIFF_LINE_SIX=$(head -6 src/shell00/ex03/klist.txt | tail -1 | grep -E "^[A-Z][a-z]{2} {1,2}[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2} [0-9]{4}  [A-Z][a-z]{2} {1,2}[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2} [0-9]{4}  HTTP/student-storage-2.42.fr@42.FR")
 
-# echo -n "1" $DIFF_LINE_ONE "2" $DIFF_LINE_TWO "3"$DIFF_LINE_THREE "4" $DIFF_LINE_FOUR "5" $DIFF_LINE_FIVE "6" $DIFF_LINE_SIX 
+# echo "1" $DIFF_LINE_ONE "2" $DIFF_LINE_TWO "3"$DIFF_LINE_THREE "4" $DIFF_LINE_FOUR "5" $DIFF_LINE_FIVE "6" $DIFF_LINE_SIX 
 
-#	printf "${GREEN} Are you running this test on the same computer you generated your ticket on? (i.e: 42 mac)${NOCOLOR} [Y/n] "
-#	read
-#	printf "\n"
-REPLY="y"
-	if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ] || [ ! "$REPLY" ] ; then
-#		klist > tests/shell00/ex03/klist.txt 2> /dev/null
-#		DIFF=$(diff -q src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt)
-#		DIFF=$(cat $src_path/shell00/ex03/klist.txt | grep -e "Credential cache: API:")
-		if [ "$DIFF_LINE_ONE" != "" ] && [ "$DIFF_LINE_TWO" != "" ] && [ "$DIFF_LINE_THREE" == "" ] && [ "$DIFF_LINE_FOUR" != "" ] && [ "$DIFF_LINE_FIVE" != "" ] && [ "$DIFF_LINE_SIX" != "" ] ; then
-			printf "${uni_success}ex03/klist.txt\t\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n" >> DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex03/klist.txt\t\t${diff_ko}${NOCOLOR}\n"
-			diff src/shell00/ex03/klist.txt tests/shell00/ex03/klist.txt >> DEEPTHOUGHT
-			printf "\ndiff ko :(\n" >> DEEPTHOUGHT
-		fi	
+if [ "$DIFF_LINE_ONE" != "" ] && [ "$DIFF_LINE_TWO" != "" ] && [ "$DIFF_LINE_THREE" == "" ] && [ "$DIFF_LINE_FOUR" != "" ] && [ "$DIFF_LINE_FIVE" != "" ] && [ "$DIFF_LINE_SIX" != "" ] ; then
+		printf "${uni_success}ex03/klist.txt\t\t${diff_ok}${NOCOLOR}\n"
+		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
-		printf "${RED} Skipping...${NOCOLOR}\n"
-		printf "\$>User skipped ex03\n" >> DEEPTHOUGHT
-		return
-	fi
+		printf "${uni_fail}ex03/klist.txt\t\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n" >> DEEPTHOUGHT
+	fi	
 }
 
 function	check_sh00_ex04() {
@@ -218,14 +195,14 @@ function	check_sh00_ex04() {
 		return
 	fi
 	mkdir user_output/shell00/ex04
-	ls -mptU tests/shell00/ex04/files/ | tr -d \\n > $usr_out/ex04/midLS # 2> /dev/null
+	ls -mptU tests/shell00/ex04/files/ | tr -d \\n > $current_dir/tests/shell00/ex04/midLS # 2> /dev/null
 	SRC_MIDLS=$(cat src/shell00/ex04/midLS)
 	USER_OUTPUT=$($SRC_MIDLS tests/shell00/ex04/files | tr -d \\n)
-	printf "$USER_OUTPUT" > user_output/shell00/ex04/midLS
-	DIFF=$(diff -q user_output/shell00/ex04/midLS tests/shell00/ex04/midLS)
+	printf "$USER_OUTPUT" > $usr_out/ex04/midLS
+	DIFF=$(diff -q $usr_out/ex04/midLS $current_dir/tests/shell00/ex04/midLS)
 	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex04/midLS\t\t\t${diff_ko}${NOCOLOR}\n"
-		diff user_output/shell00/ex04/midLS tests/shell00/ex04/midLS >> DEEPTHOUGHT
+		diff $usr_out/ex04/midLS $current_dir/tests/shell00/ex04/midLS >> DEEPTHOUGHT
 		printf "\ndiff ko :(\n" >> DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/midLS\t\t\t${diff_ok}${NOCOLOR}\n"
