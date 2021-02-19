@@ -299,7 +299,10 @@ function	check_c00_ex07() {
 }
 
 function	check_c00_ex08() {
-	printf "${RED}This exercise is not supported yet.\n${NOCOLOR}"
+	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
+	printf "= ex07 =\n==========================================\n" >> DEEPTHOUGHT
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
+	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
 }
 
 function	c00() {
