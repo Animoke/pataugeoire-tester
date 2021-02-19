@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   user_functions.h                                   :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpatingr <gpatingr@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/19 00:06:00 by gpatingr          #+#    #+#             */
-/*   Updated: 2021/02/19 00:08:38 by gpatingr         ###   ########.fr       */
+/*   Created: 2021/02/18 23:57:27 by gpatingr          #+#    #+#             */
+/*   Updated: 2021/02/18 23:57:52 by gpatingr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _USER_FUNCTIONS_H_
-# define _USER_FUNCTIONS_H_
+#include "../../header/user_functions.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <strings.h>
-
-// c00 functions
-void	ft_putchar(char c);
-void	ft_print_alphabet(void);
-void	ft_print_reverse_alphabet(void);
-void	ft_print_numbers(void);
-void	ft_is_negative(int n);
-void	ft_print_comb(void);
-void	ft_print_comb2(void);
-void	ft_putnbr(int nb);
-
-#endif
+int		main(void)
+{
+	ft_print_comb();
+	return (0);
+}
