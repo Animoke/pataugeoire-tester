@@ -210,6 +210,7 @@ REPLY="y"
 }
 
 function	check_sh00_ex04() {
+	mkdir $usr_out/ex04
 	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
 	printf "\n= ex04 =\n==========================================\n" >> DEEPTHOUGHT
 	if ! file_exists "src/shell00/ex04/midLS" ; then
@@ -217,7 +218,7 @@ function	check_sh00_ex04() {
 		return
 	fi
 	mkdir user_output/shell00/ex04
-	ls -mptU tests/shell00/ex04/files/ | tr -d \\n > tests/shell00/ex04/midLS # 2> /dev/null
+	ls -mptU tests/shell00/ex04/files/ | tr -d \\n > $usr_out/ex04/midLS # 2> /dev/null
 	SRC_MIDLS=$(cat src/shell00/ex04/midLS)
 	USER_OUTPUT=$($SRC_MIDLS tests/shell00/ex04/files | tr -d \\n)
 	printf "$USER_OUTPUT" > user_output/shell00/ex04/midLS
