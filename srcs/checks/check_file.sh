@@ -30,11 +30,11 @@ function	check_norme() {
 #	echo $NORME $NORME_RES $FILE_NB
 	if [ "$NORME_RES" == "" ] ; then
 		printf "${uni_success} Norme: ./$1\n"
-		printf "Norme: $1: OK\n" >> $current_dir/DEEPTHOUGHT
+		printf "\nNorme: $1: OK\n" >> $current_dir/DEEPTHOUGHT
 		NORME=0
 	else
 		printf "${uni_fail} Norme: ./$1\n"
-		printf "Norme: $1: KO\n" >> $current_dir/DEEPTHOUGHT
+		printf "\nNorme: $1: KO\n" >> $current_dir/DEEPTHOUGHT
 		NORME=1
 	fi
 }

@@ -18,6 +18,7 @@ source	srcs/var/colors.sh
 source	srcs/var/dspl.sh
 source	srcs/var/env.sh
 source	srcs/init.sh
+source	srcs/utils.sh
 source	srcs/msg.sh
 source	srcs/gfx.sh
 source	srcs/checks/check_file.sh
@@ -25,11 +26,10 @@ source	srcs/checks/check_shell00.sh
 source	srcs/checks/check_shell01.sh
 source	srcs/checks/check_c00.sh
 
-function	cleanup() {
-	rm -rf src user_output
-}
+#function	cleanup() {
+#	rm -rf src user_output
+#}
 
-trap cleanup EXIT
 
 case $1 in
 	--help | -h) 
@@ -40,16 +40,12 @@ case $1 in
 	-c) ;;
 	*)
 #		man srcs/help ;;
-		init ; shell00 ; shell01 ;; 
+		init ; shell00 ; shell01 ; c00 ;; 
 esac
 
-rm -rf src user_output 
+#rm -rf src user_output 
 printf "${GREEN}${BOLD}\n\nThank you for using pateaugeoire!\n${NOCOLOR}"
 printf "\nThank you for using pateaugeoire!\n" >> DEEPTHOUGHT
-
-
-#shell00
-
-
-
+cd $current_dir
 cleanup
+#trap cleanup EXIT
