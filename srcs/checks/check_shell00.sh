@@ -42,7 +42,7 @@ function	check_sh00_ex01() {
 		return
 	fi
 	FILESIZE=$(wc -c src/shell00/ex01/testShell00 | sed -e 's/\ src\/shell00\/ex01\/testShell00//g')
-	if ls -l src/shell00/ex01 | sed -e 's/ //g' | grep -e "-r--r-xr-x1" | grep -e "2019" > /dev/null && [ $FILESIZE -eq 40 ] ; then
+	if ls -l src/shell00/ex01 | sed -e 's/ //g' | grep -e "-r--r-xr-x1" | grep -E "20[0-9]{2}" > /dev/null && [ $FILESIZE -eq 40 ] ; then
 		printf "${uni_success}ex01/testShell00\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -75,7 +75,7 @@ function	check_sh00_ex02() {
 
 	# Check test0
 	printf "\ntest0\n" >> DEEPTHOUGHT
-	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "drwx--xr-x2" | grep "2019" | grep -e "test0" > /dev/null ; then
+	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "drwx--xr-x2" | grep -E "20[0-9]{2}" | grep -e "test0" > /dev/null ; then
 		printf "${uni_success}ex02/test0\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -87,7 +87,7 @@ function	check_sh00_ex02() {
 	# Check test1
 	printf "\ntest1\n" >> DEEPTHOUGHT
 	FILESIZE=$(wc -c src/shell00/ex02/test1 | sed -e 's/\ src\/shell00\/ex02\/test1//g')
-	if ls -l src/shell00/ex02/test1 | sed -e 's/ //g' | grep -e "-rwx--xr--1" | grep "2019" | grep -e "test1" > /dev/null && [ $FILESIZE -eq 4 ] ; then
+	if ls -l src/shell00/ex02/test1 | sed -e 's/ //g' | grep -e "-rwx--xr--1" | grep -E "20[0-9]{2}" | grep -e "test1" > /dev/null && [ $FILESIZE -eq 4 ] ; then
 		printf "${uni_success}ex02/test1\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -98,7 +98,7 @@ function	check_sh00_ex02() {
 
 	# Check test2
 	printf "\ntest2\n" >> DEEPTHOUGHT
-	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "dr-x---r--2" | grep "2019" | grep -e "test2" > /dev/null ; then
+	if ls -l src/shell00/ex02/ | sed -e 's/ //g' | grep -e "dr-x---r--2" | grep -E "20[0-9]{2}" | grep -e "test2" > /dev/null ; then
 		printf "${uni_success}ex02/test2\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -110,7 +110,7 @@ function	check_sh00_ex02() {
 	# Check test3
 	printf "\ntest3\n" >> DEEPTHOUGHT
 	FILESIZE=$(wc -c src/shell00/ex02/test3 | sed -e 's/\ src\/shell00\/ex02\/test3//g')
-	if ls -l src/shell00/ex02/test3 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep "2019" | grep -e "test3" > /dev/null && [ $FILESIZE -eq 1 ] ; then
+	if ls -l src/shell00/ex02/test3 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep -E "20[0-9]{2}" | grep -e "test3" > /dev/null && [ $FILESIZE -eq 1 ] ; then
 		printf "${uni_success}ex02/test3\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -122,7 +122,7 @@ function	check_sh00_ex02() {
 	# Check test4
 	printf "\ntest4\n" >> DEEPTHOUGHT
 	FILESIZE=$(wc -c src/shell00/ex02/test4 | sed -e 's/\ src\/shell00\/ex02\/test4//g')
-	if ls -l src/shell00/ex02/test4 | sed -e 's/ //g' | grep -e "-rw-r----x1" | grep "2019" | grep -e "test4" > /dev/null && [ $FILESIZE -eq 2 ] ; then
+	if ls -l src/shell00/ex02/test4 | sed -e 's/ //g' | grep -e "-rw-r----x1" | grep -E "20[0-9]{2}" | grep -e "test4" > /dev/null && [ $FILESIZE -eq 2 ] ; then
 		printf "${uni_success}ex02/test4\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -134,7 +134,7 @@ function	check_sh00_ex02() {
 	# Check test5
 	printf "\ntest5\n" >> DEEPTHOUGHT
 	FILESIZE=$(wc -c src/shell00/ex02/test5 | sed -e 's/\ src\/shell00\/ex02\/test5//g')
-	if ls -l src/shell00/ex02/test5 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep "2019" | grep -e "test5" > /dev/null && [ $FILESIZE -eq 1 ] ; then
+	if ls -l src/shell00/ex02/test5 | sed -e 's/ //g' | grep -e "-r-----r--2" | grep -E "20[0-9]{2}" | grep -e "test5" > /dev/null && [ $FILESIZE -eq 1 ] ; then
 		printf "${uni_success}ex02/test5\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else
@@ -145,7 +145,7 @@ function	check_sh00_ex02() {
 
 	# Check test6
 	printf "\ntest6\n" >> DEEPTHOUGHT
-	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxr-xr-x1" | grep "2019" | grep -e "test6" | grep -e "test0" > /dev/null ; then
+	if ls -l src/shell00/ex02/test6 | sed -e 's/ //g' | grep -e "lrwxr-xr-x1" | grep -E "20[0-9]{2}" | grep -e "test6" | grep -e "test0" > /dev/null ; then
 		printf "${uni_success}ex02/test6\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "diff ok :D\n" >> DEEPTHOUGHT
 	else

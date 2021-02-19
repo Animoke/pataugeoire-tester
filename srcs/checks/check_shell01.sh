@@ -99,13 +99,14 @@ function	check_sh01_ex04() {
 		mkdir $usr_out tests/shell01/ex04 2> /dev/null
 	fi
 	USER_OUTPUT=$(bash $current_dir/src/shell01/ex04/MAC.sh)
-	RES=$(ifconfig -a | awk '/ether/' | sed -e "s/ether//g" | tr -d "[[:blank:]]")
+	ifconfig -a | awk '/ether/ {print$2}' > $usr_out/res_out
+	DIFF=$(diff $usr_out/res_out <(echo $USER_OUTPUT))
 	printf "${BLUE}Testing differences with ifconfig...\n${NOCOLOR}"
 	printf "Testing differences with ifconfig...\n" >> DEEPTHOUGHT
-	if [ "$USER_OUTPUT" != "$RES" ] ; then
+	if [ "$DIFF" != "" ] ; then
 		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
-		diff <(echo $USER_OUTPUT) <($RES)
+		echo $DIFF >> DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
@@ -117,7 +118,7 @@ function	check_sh01_ex04() {
 		printf "${uni_success}ex04/MAC.sh\t\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex04/MAC.sh\t\t\t${diff_ko}${NOCOLOR} Note: this might not work on linux due to different behaviors.\n" 
 		printf "Bad formatting. Please check spaces or newlines.\n" >> DEEPTHOUGHT
 		printf "\ndiff ko :(\n" >> $current_dir/DEEPTHOUGHT
 	fi
@@ -126,7 +127,7 @@ function	check_sh01_ex04() {
 function	check_sh01_ex05() {
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
 	printf "\n= ex05 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! ls src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\" > /dev/null ; then
+	if ! file_exists src/shell01/ex05/\"\\\?\$\*\'MaRViN\'\*\$\?\\\" ; then
 		msg_nothing_turned_in "\"\\\?\$\*\'MaRViN\'\*\$\?\\\""
 		return
 	fi
@@ -144,7 +145,7 @@ function	check_sh01_ex05() {
 function	check_sh01_ex06() {
 	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
 	printf "\n= ex06 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! ls src/shell01/ex06/skip.sh > /dev/null ; then
+	if ! file_exists src/shell01/ex06/skip.sh ; then
 		msg_nothing_turned_in "ex06/skip.sh"
 		return
 	fi
