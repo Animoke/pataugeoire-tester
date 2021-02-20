@@ -287,46 +287,65 @@ function	check_c01_ex07() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
 	printf "= ex07 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c01/ex07/ft_putnbr.c" ; then
-		msg_nothing_turned_in "ex07/ft_putnbr.c"
+	if ! file_exists "src/c01/ex07/ft_rev_int_tab.c" ; then
+		msg_nothing_turned_in "ex07/ft_rev_int_tab.c"
 		return
 	fi
-	check_norme "src/c01/ex07/ft_putnbr.c"
-	check_prototype "void" "ft_putnbr" "src/c01/ex07/ft_putnbr.c"
+	check_norme "src/c01/ex07/ft_rev_int_tab.c"
+	check_prototype "void" "ft_rev_int_tab" "src/c01/ex07/ft_rev_int_tab.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c01/ex07/main.c ./src/c01/ex07/ft_putnbr.c 
+	compile_tests ./tests/c01/ex07/main.c ./src/c01/ex07/ft_rev_int_tab.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex07/ft_putnbr.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex07/ft_rev_int_tab.c\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	local NUMBER=(42 2147483647 1337 -42 -2147483647 -1337 6473287 -328 612567)
-	local i=0
-	while [ $i -le 8 ]
-	do
-		local USER_OUTPUT=$(./user.out ${NUMBER[$i]})
-		printf "> test $i with nb=${NUMBER[i]}\n" >> $current_dir/DEEPTHOUGHT
-		if [ "$USER_OUTPUT" == "${NUMBER[i]}" ] ; then
-			printf "${uni_success}ex07/ft_putnbr.c\t\t${diff_ok}${NOCOLOR}\n"
+		local USER_OUTPUT=$(./user.out)
+		if [ "$USER_OUTPUT" == "0987654321" ] ; then
+			printf "${uni_success}ex07/ft_rev_int_tab.c\t${diff_ok}${NOCOLOR}\n"
 			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 		else
-			printf "${uni_fail}ex07/ft_putnbr.c\t\t${diff_ko}${NOCOLOR}\n"
-			printf "$USER_OUTPUT\n"
+			printf "${uni_fail}ex07/ft_rev_int_tab.c\t${diff_ko}${NOCOLOR}\n"
+			diff <(echo "0987654321") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 		fi
-		((i++))
-	done	
 	cd $current_dir
 }
 
 function	check_c01_ex08() {
-	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
-	printf "= ex07 =\n==========================================\n" >> DEEPTHOUGHT
-	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
-	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
+	usr_out=$current_dir/user_output/c01/ex08
+	mkdir $usr_out
+	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	printf "= ex08 =\n==========================================\n" >> DEEPTHOUGHT
+	if ! file_exists "src/c01/ex08/ft_sort_int_tab.c" ; then
+		msg_nothing_turned_in "ex08/ft_sort_int_tab.c"
+		return
+	fi
+	check_norme "src/c01/ex08/ft_sort_int_tab.c"
+	check_prototype "void" "ft_sort_int_tab" "src/c01/ex08/ft_sort_int_tab.c"
+	if [ "$NORME" != "0" ] ; then
+		return
+	fi
+	compile_tests ./tests/c01/ex08/main.c ./src/c01/ex08/ft_sort_int_tab.c 
+	if [ "$IS_COMPILED" != "0" ] ; then
+		printf "${uni_fail}ex08/ft_sort_int_tab.c\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
+		return
+	fi
+	cd $usr_out
+		local USER_OUTPUT=$(./user.out)
+		if [ "$USER_OUTPUT" == "0123456789" ] ; then
+			printf "${uni_success}ex08/ft_sort_int_tab.c\t${diff_ok}${NOCOLOR}\n"
+			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		else
+			printf "${uni_fail}ex08/ft_sort_int_tab.c\t${diff_ko}${NOCOLOR}\n"
+			diff <(echo "0123456789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+		fi
+	cd $current_dir
 }
 
 function	c01() {
@@ -341,8 +360,8 @@ function	c01() {
 	check_c01_ex04
 	check_c01_ex05
 	check_c01_ex06
-#	check_c01_ex07
-#	check_c01_ex08
+	check_c01_ex07
+	check_c01_ex08
 	rm -rf $current_dir/user_output/c01 $current_dir/src/c01
 	printf "${GREEN}\nAll c01 tests are done.\n\n${NOCOLOR}"
 	printf "\n\nAll c01 tests are done.\n" >> DEEPTHOUGHT

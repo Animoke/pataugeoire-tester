@@ -26,7 +26,6 @@ function	ask_username() {
 		printf "Welcome, you!\n\n"
 		return
 	fi
-	USER_NAME=$USER
 	printf "Are you $USER_NAME ? [Y/n] "
 	read
 	if [ "$REPLY" == "n" ] || [ "$REPLY" == "N" ] ; then
