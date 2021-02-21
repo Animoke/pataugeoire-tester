@@ -583,7 +583,7 @@ function	check_c02_ex10() {
 		return
 	fi
 	check_norme "src/c02/ex10/ft_strlcpy.c"
-	check_prototype "char" "\*ft_strlcpy" "src/c02/ex10/ft_strlcpy.c"
+	check_prototype "unsigned int" "ft_strlcpy" "src/c02/ex10/ft_strlcpy.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
@@ -595,7 +595,7 @@ function	check_c02_ex10() {
 	fi
 	cd $usr_out
 	local USER_OUTPUT=$(./user.out)
-	local RES="is heisenberg the kingpin? is heisenberg the kingpin?"
+	local RES="marvin"
 	if [ "$USER_OUTPUT" == "$RES" ] ; then
 		printf "${uni_success}ex10/ft_strlcpy.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
@@ -605,6 +605,47 @@ function	check_c02_ex10() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
+}
+
+function	check_c02_ex11() {
+	usr_out=$current_dir/user_output/c02/ex11
+	mkdir $usr_out
+	printf " ${YELLOW}${UNDERLINE}ex11:\n${NOCOLOR}"
+	printf "= ex11 =\n==========================================\n" >> DEEPTHOUGHT
+	if ! file_exists "src/c02/ex11/ft_putstr_non_printable.c" ; then
+		msg_nothing_turned_in "ex11/ft_putstr_non_printable.c"
+		return
+	fi
+	check_norme "src/c02/ex11/ft_putstr_non_printable.c"
+	check_prototype "void" "ft_putstr_non_printable" "src/c02/ex11/ft_putstr_non_printable.c"
+	if [ "$NORME" != "0" ] ; then
+		return
+	fi
+	compile_tests ./tests/c02/ex11/main.c ./src/c02/ex11/ft_putstr_non_printable.c 
+	if [ "$IS_COMPILED" != "0" ] ; then
+		printf "${uni_fail}ex11/ft_putstr_non_printable.c${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
+		return
+	fi
+	cd $usr_out
+	local USER_OUTPUT=$(./user.out)
+	local RES="marvin \\07the\\08 bot\\09, \\0athe\\0b ship\\0c is\\0d in\\0a danger"
+	if [ "$USER_OUTPUT" == "$RES" ] ; then
+		printf "${uni_success}ex11/ft_putstr_non_printable.c${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex11/ft_putstr_non_printable.c${diff_ko}${NOCOLOR}\n"
+		diff <(echo $RES) <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+	fi
+	cd $current_dir
+}
+
+function	check_c02_ex12() {
+	printf " ${YELLOW}${UNDERLINE}ex12:\n${NOCOLOR}"
+	printf "= ex12 =\n==========================================\n" >> DEEPTHOUGHT
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
+	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
 }
 
 function	c02() {
@@ -622,6 +663,9 @@ function	c02() {
 	check_c02_ex07
 	check_c02_ex08
 	check_c02_ex09
+	check_c02_ex10
+	check_c02_ex11
+	check_c02_ex12
 	rm -rf $current_dir/user_output/c02 $current_dir/src/c02
 	printf "${GREEN}\nAll c02 tests are done.\n\n${NOCOLOR}"
 	printf "\n\nAll c02 tests are done.\n" >> DEEPTHOUGHT
