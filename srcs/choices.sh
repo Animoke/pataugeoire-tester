@@ -36,8 +36,6 @@ printf "${YELLOW}===============================================================
 		else
 			printf "${RED}===> Invalid option: $REPLY <===\n${NOCOLOR}"
 	fi
-
-
 }
 
 function	run_all() {
