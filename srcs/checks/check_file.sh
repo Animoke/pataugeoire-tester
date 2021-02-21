@@ -45,7 +45,7 @@ function	check_prototype() {
 	FILE=$3
 	PROTOTYPE=$(grep -E "^$TYPE"$'\t{1,}'"$FUNC_NAME"'\([^)]+\)' $FILE)
 	if [ "$PROTOTYPE" == "" ] ; then
-		printf "$FILE: $FUNC_NAME: ${RED}Bad prototype.${NOCOLOR}\n"
+		printf " $FILE: $FUNC_NAME: ${RED}Bad prototype.${NOCOLOR}\n"
 	else
 		return
 	fi
