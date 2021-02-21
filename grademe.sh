@@ -19,6 +19,7 @@ source	srcs/var/dspl.sh
 source	srcs/var/env.sh
 source	srcs/init.sh
 source	srcs/utils.sh
+source	srcs/choices.sh
 source	srcs/msg.sh
 source	srcs/gfx.sh
 source	srcs/checks/check_file.sh
@@ -44,7 +45,7 @@ case $1 in
 	-c) ;;
 	*)
 #		man srcs/help ;;
-		init ; shell00 ; shell01 ; c00 ; c01 ; c02;; 
+		init ; choices ;;# shell00 ; shell01 ; c00 ; c01 ; c02;; 
 esac
 
 #rm -rf src user_output 
