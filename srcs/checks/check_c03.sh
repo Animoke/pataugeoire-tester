@@ -30,6 +30,7 @@ function	check_c03_ex00() {
 		return
 	fi
 	cd $usr_out
+	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="0123456789"
 	local TEST2="9876543210"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
@@ -40,6 +41,7 @@ function	check_c03_ex00() {
 		printf "${uni_fail}ex00/ft_strcmp.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="hey i'm dave"
 	local TEST2="hello dave i'm daniel"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
@@ -50,6 +52,7 @@ function	check_c03_ex00() {
 		printf "${uni_fail}ex00/ft_strcmp.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="So long, and thanks for all the fish"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST1")
 	if [ $USER_OUTPUT -eq 0 ] ; then
@@ -83,6 +86,7 @@ function	check_c03_ex01() {
 		return
 	fi
 	cd $usr_out
+	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="0123456789"
 	local TEST2="9876543210"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2" "1")
@@ -93,6 +97,7 @@ function	check_c03_ex01() {
 		printf "${uni_fail}ex01/ft_strncmp.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="hey i'm dave"
 	local TEST2="hello dave i'm daniel"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2" 2)
@@ -103,6 +108,7 @@ function	check_c03_ex01() {
 		printf "${uni_fail}ex01/ft_strncmp.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
+	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	local TEST1="So long, and thanks for all the fish"
 	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST1" "128")
 	if [ $USER_OUTPUT -eq 0 ] ; then
@@ -120,75 +126,52 @@ function	check_c03_ex02() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex02:\n${NOCOLOR}"
 	printf "= ex02 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex02/ft_str_is_alpha.c" ; then
-		msg_nothing_turned_in "ex02/ft_str_is_alpha.c"
+	if ! file_exists "src/c03/ex02/ft_strcat.c" ; then
+		msg_nothing_turned_in "ex02/ft_strcat.c"
 		return
 	fi
-	check_norme "src/c03/ex02/ft_str_is_alpha.c"
-	check_prototype "int" "ft_str_is_alpha" "src/c03/ex02/ft_str_is_alpha.c"
+	check_norme "src/c03/ex02/ft_strcat.c"
+	check_prototype "char" "\*ft_strcat" "src/c03/ex02/ft_strcat.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c03/ex02/main.c ./src/c03/ex02/ft_str_is_alpha.c 
+	compile_tests ./tests/c03/ex02/main.c ./src/c03/ex02/ft_strcat.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	local RES_ALPHA="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	local RES_NUM="0123456789"
-	local RES_SPECIAL="!\"#\$%&'()*+,-./:;<=>?@[\\]^_\`{|}~"
-	local RES_HYBRID="!\$'(*-0249;<?@ABCD[Z_abfhjlqsuwz{|"
-	local USER_ALPHA=$(./user.out "$RES_ALPHA")
-	local USER_NUM=$(./user.out "$RES_NUM")
-	local USER_SPECIAL=$(./user.out "$RES_SPECIAL")
-	local USER_HYBRID=$(./user.out "$RES_HYBRID")
-	local USER_EMPTY=$(./user.out "")
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_ALPHA" != "1" ]; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="0123456789"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex02/ft_strcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_NUM" != "0" ]; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="hey i'm dave"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex02/ft_strcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_SPECIAL" != "0" ]; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="So long, and thanks for all the fish"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex02/ft_strcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_HYBRID" != "0" ]; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_EMPTY" != "1" ]; then
-		printf "${uni_fail}ex02/ft_str_is_alpha.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT)
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -198,75 +181,52 @@ function	check_c03_ex03() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex03:\n${NOCOLOR}"
 	printf "= ex03 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex03/ft_str_is_numeric.c" ; then
-		msg_nothing_turned_in "ex03/ft_str_is_numeric.c"
+	if ! file_exists "src/c03/ex03/ft_strncat.c" ; then
+		msg_nothing_turned_in "ex03/ft_strncat.c"
 		return
 	fi
-	check_norme "src/c03/ex03/ft_str_is_numeric.c"
-	check_prototype "int" "ft_str_is_numeric" "src/c03/ex03/ft_str_is_numeric.c"
+	check_norme "src/c03/ex03/ft_strncat.c"
+	check_prototype "char" "\*ft_strncat" "src/c03/ex03/ft_strncat.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c03/ex03/main.c ./src/c03/ex03/ft_str_is_numeric.c 
+	compile_tests ./tests/c03/ex03/main.c ./src/c03/ex03/ft_strncat.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	local RES_ALPHA="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	local RES_NUM="0123456789"
-	local RES_SPECIAL="!\"#\$%&'()*+,-./:;<=>?@[\\]^_\`{|}~"
-	local RES_HYBRID="!\$'(*-0249;<?@ABCD[Z_abfhjlqsuwz{|"
-	local USER_ALPHA=$(./user.out "$RES_ALPHA")
-	local USER_NUM=$(./user.out "$RES_NUM")
-	local USER_SPECIAL=$(./user.out "$RES_SPECIAL")
-	local USER_HYBRID=$(./user.out "$RES_HYBRID")
-	local USER_EMPTY=$(./user.out "")
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_ALPHA" != "0" ]; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="0123456789"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_NUM" != "1" ]; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="hey i'm dave"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_SPECIAL" != "0" ]; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="So long, and thanks for all the fish"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_HYBRID" != "0" ]; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_EMPTY" != "1" ]; then
-		printf "${uni_fail}ex03/ft_str_is_numeric.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT)
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -692,7 +652,7 @@ function	c03() {
 	
 	check_c03_ex00
 	check_c03_ex01
-#	check_c03_ex02
+	check_c03_ex02
 #	check_c03_ex03
 #	check_c03_ex04
 #	check_c03_ex05
