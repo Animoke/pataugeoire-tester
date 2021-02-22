@@ -35,7 +35,7 @@ You can just clone this repository using git:
 
 
 
-Note that all your projects directories must not contain capital letters. e.g:
+Note that all your projects directories must NOT contain capital letters. e.g:
 
 ```
 |- piscine/
