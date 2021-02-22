@@ -12,4 +12,6 @@
 # Environment variables
 
 current_dir=$PWD
-USER_NAME=$USER
+if [ "USER_NAME" != "gpatingr" ]; then
+	USER_NAME=$USER
+fi

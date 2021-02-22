@@ -42,7 +42,7 @@ case $1 in
 	--c00 | -c00) init ; c00 ;;
 	--c01 | -c01) init ; c01 ;;
 	--c02 | -c02) init ; c02 ;;
-	-c) ;;
+	-a) init ; run_all ;;
 	*)
 #		man srcs/help ;;
 		init ; choices ;;# shell00 ; shell01 ; c00 ; c01 ; c02;; 
