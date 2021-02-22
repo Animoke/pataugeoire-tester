@@ -24,8 +24,8 @@ You need to have the following file structure:
 
 ```
 .
-|- piscine/
-|- pataugeoire-tester/
+∟ piscine/
+∟ pataugeoire-tester/
 ```
 
 Whereas `piscine` contains all your projects, and `pataugeoire-tester` is the folder containing this repository.
@@ -38,7 +38,7 @@ You can just clone this repository using git:
 Note that all your projects directories must NOT contain capital letters. e.g:
 
 ```
-|- piscine/
+∟ piscine/
           ∟ shell00
           ∟ shell01
           ∟ c00
