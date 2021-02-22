@@ -53,4 +53,8 @@ char			*ft_strcapitalize(char *str);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 void			ft_putstr_non_printable(char *str);
 
+// c03
+int				ft_strcmp(char *s1, char *s2);
+int				ft_strncmp(char *s1, char *s2, unsigned int n);
+
 #endif

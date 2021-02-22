@@ -28,6 +28,7 @@ source	srcs/checks/check_shell01.sh
 source	srcs/checks/check_c00.sh
 source	srcs/checks/check_c01.sh
 source	srcs/checks/check_c02.sh
+source	srcs/checks/check_c03.sh
 
 #function	cleanup() {
 #	rm -rf src user_output
@@ -42,6 +43,7 @@ case $1 in
 	--c00 | -c00) init ; c00 ;;
 	--c01 | -c01) init ; c01 ;;
 	--c02 | -c02) init ; c02 ;;
+	--c03 | -c03) init ; c03 ;;
 	-a) init ; run_all ;;
 	*)
 #		man srcs/help ;;
