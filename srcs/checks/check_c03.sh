@@ -150,6 +150,7 @@ function	check_c03_ex02() {
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
@@ -160,6 +161,7 @@ function	check_c03_ex02() {
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
@@ -170,7 +172,7 @@ function	check_c03_ex02() {
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_strcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT)
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
@@ -199,33 +201,35 @@ function	check_c03_ex03() {
 	cd $usr_out
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
 	local TEST="0123456789"
-	local USER_OUTPUT=$(./user.out "$TEST")
-	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+	local USER_OUTPUT=$(./user.out "$TEST" "8")
+	if [ "$USER_OUTPUT" == "0123456701234567" ] ; then
 		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "0123456701234567") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	local TEST="hey i'm dave"
-	local USER_OUTPUT=$(./user.out "$TEST")
-	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+	local USER_OUTPUT=$(./user.out "$TEST" "5")
+	if [ "$USER_OUTPUT" == "hey ihey i" ] ; then
 		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "hey ihey i") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	local TEST="So long, and thanks for all the fish"
-	local USER_OUTPUT=$(./user.out "$TEST")
-	if [ "$USER_OUTPUT" == "$TEST$TEST" ] ; then
+	local USER_OUTPUT=$(./user.out "$TEST" "28")
+	if [ "$USER_OUTPUT" == "So long, and thanks for all So long, and thanks for all " ] ; then
 		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT)
+		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
@@ -653,7 +657,7 @@ function	c03() {
 	check_c03_ex00
 	check_c03_ex01
 	check_c03_ex02
-#	check_c03_ex03
+	check_c03_ex03
 #	check_c03_ex04
 #	check_c03_ex05
 #	check_c03_ex06
