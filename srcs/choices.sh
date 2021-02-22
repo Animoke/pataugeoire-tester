@@ -22,6 +22,7 @@ printf "${YELLOW}===============================================================
 	12) Test c02;
 	13) Test c03;
 	14) Test c04;
+	15) Test c05;
 \n${NOCOLOR}Type option (default: 0): "
 	read
 		if [ "$REPLY" == "0" ] || [ "$REPLY" == "" ]; then
@@ -40,6 +41,8 @@ printf "${YELLOW}===============================================================
 			c03
 		elif [ "$REPLY" == "14" ]; then
 			c04
+		elif [ "$REPLY" == "15" ]; then
+			c05
 		else
 			printf "${RED}===> Invalid option: $REPLY <===\n${NOCOLOR}"
 	fi
@@ -54,4 +57,5 @@ function	run_all() {
 	c02
 	c03
 	c04
+	c05
 }
