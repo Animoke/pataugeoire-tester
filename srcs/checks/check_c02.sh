@@ -412,7 +412,6 @@ function	check_c02_ex06() {
 	cd $usr_out
 	local RES_PRINTABLE=" !\"#\$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\`abcdefghijklmnopqrstuvwxyz{|}~"
 	local USER_OUTPUT=$(./user.out "$RES_PRINTABLE")
-	echo $USER_OUTPUT
 	if [ "$USER_OUTPUT" != "011" ]; then
 		printf "${uni_fail}ex06/ft_str_is_printable.c\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "011") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
