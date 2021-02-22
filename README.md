@@ -67,5 +67,5 @@ You can use options to run the script without being asked what to test:
 | ------------------ | ----------------------- |
 | --help \| -h       | Displays help and exits |
 | --shellXX \| -shXX | Tests only shellXX      |
-| --cxx \| -cxx      | Tests only cXX          |
+| --cXX \| -cXX      | Tests only cXX          |
 
