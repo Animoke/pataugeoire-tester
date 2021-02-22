@@ -1,7 +1,7 @@
-# pateaugeoire-tester
+# pataugeoire-tester
 <img align="right" src="./srcs/img_readme.png" width="50%"/>
 
-pateaugeoire-tester is a script to test 42's piscine projects.
+pataugeoire-tester is a script to test 42's piscine projects.
 
 It  will do the following tests:
 
@@ -25,13 +25,13 @@ You need to have the following file structure:
 ```
 .
 |- piscine/
-|- pateaugeoire-tester/
+|- pataugeoire-tester/
 ```
 
-Whereas `piscine` contains all your projects, and `pateaugeoire-tester` is the folder containing this repository.
+Whereas `piscine` contains all your projects, and `pataugeoire-tester` is the folder containing this repository.
 
 You can just clone this repository using git:
-```git clone https://github.com/Animoke/pateaugeoire-tester.git```
+```git clone https://github.com/Animoke/pataugeoire-tester.git```
 
 
 
@@ -45,7 +45,7 @@ Note that all your projects directories must NOT contain capital letters. e.g:
           ∟ etc..
 ```
 
-Then just `cd` into `pateaugeoire-tester` and run `./grademe.sh`.
+Then just `cd` into `pataugeoire-tester` and run `./grademe.sh`.
 
 
 
