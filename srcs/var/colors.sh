@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    pateaugeoire-tester                                                       #
+#    pataugeoire-tester                                                        #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    colors.sh                                      by Animoke (animoke.dev)   #

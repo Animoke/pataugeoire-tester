@@ -2,7 +2,7 @@
 
 # ############################################################################ #
 #                                                                              #
-#    pateaugeoire-tester                                                       #
+#    pataugeoire-tester                                                        #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    msg.sh                                         by Animoke (animoke.dev)   #

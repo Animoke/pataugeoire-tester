@@ -1,7 +1,7 @@
 #!/bin/bash
 # ############################################################################ #
 #                                                                              #
-#    pateaugeoire-tester                                                       #
+#    pataugeoire-tester                                                        #
 #    v. 1.0                                                                    #
 #                                                                              #
 #    grademe.sh                                     by Animoke (animoke.dev)   #
@@ -51,8 +51,8 @@ case $1 in
 esac
 
 #rm -rf src user_output 
-printf "${GREEN}${BOLD}\n\nThank you for using pateaugeoire!\n${NOCOLOR}"
-printf "\nThank you for using pateaugeoire!\n" >> DEEPTHOUGHT
+printf "${GREEN}${BOLD}\n\nThank you for using pataugeoire!\n${NOCOLOR}"
+printf "\nThank you for using pataugeoire!\n" >> DEEPTHOUGHT
 cd $current_dir
 cleanup
 #trap cleanup EXIT
