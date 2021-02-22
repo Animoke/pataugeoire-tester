@@ -240,75 +240,69 @@ function	check_c03_ex04() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
 	printf "= ex04 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex04/ft_str_is_lowercase.c" ; then
-		msg_nothing_turned_in "ex04/ft_str_is_lowercase.c"
+	if ! file_exists "src/c03/ex04/ft_strstr.c" ; then
+		msg_nothing_turned_in "ex04/ft_strstr.c"
 		return
 	fi
-	check_norme "src/c03/ex04/ft_str_is_lowercase.c"
-	check_prototype "int" "ft_str_is_lowercase" "src/c03/ex04/ft_str_is_lowercase.c"
+	check_norme "src/c03/ex04/ft_strstr.c"
+	check_prototype "char" "\*ft_strstr" "src/c03/ex04/ft_strstr.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c03/ex04/main.c ./src/c03/ex04/ft_str_is_lowercase.c 
+	compile_tests ./tests/c03/ex04/main.c ./src/c03/ex04/ft_strstr.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	local RES_LOW="abcdefghijklmnopqrstuvwxyz"
-	local RES_UP="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	local RES_NUM="0123456789"
-	local RES_HYBRID="ABCD[Z_abfhjlqsuwz|"
-	local USER_LOW=$(./user.out "$RES_LOW")
-	local USER_UP=$(./user.out "$RES_UP")
-	local USER_NUM=$(./user.out "$RES_NUM")
-	local USER_HYBRID=$(./user.out "$RES_HYBRID")
-	local USER_EMPTY=$(./user.out "")
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_LOW" != "1" ]; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST1="0123456789"
+	local TEST2="7"
+	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
+	if [ "$USER_OUTPUT" == "ok" ] ; then
+		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "789 789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_NUM" != "0" ]; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST1="hey i'm dave"
+	local TEST2="7"
+	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
+	if [ "$USER_OUTPUT" == "ok" ] || [ "$USER_OUTPUT" == "" ] ; then
+		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_UP" != "0" ]; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST1="So long, and thanks for all the fish"
+	local TEST2=" "
+	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
+	if [ "$USER_OUTPUT" == "ok" ] ; then
+		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo " long, and thanks for all the fish long, and thanks for all the fish") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_HYBRID" != "0" ]; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST1="hot chocolate milk"
+	local TEST2="late"
+	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
+	if [ "$USER_OUTPUT" == "ok" ] ; then
+		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_EMPTY" != "1" ]; then
-		printf "${uni_fail}ex04/ft_str_is_lowercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "late milk late milk") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -318,335 +312,68 @@ function	check_c03_ex05() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
 	printf "= ex05 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex05/ft_str_is_uppercase.c" ; then
-		msg_nothing_turned_in "ex05/ft_str_is_uppercase.c"
+	if ! file_exists "src/c03/ex05/ft_strlcat.c" ; then
+		msg_nothing_turned_in "ex05/ft_strlcat.c"
 		return
 	fi
-	check_norme "src/c03/ex05/ft_str_is_uppercase.c"
-	check_prototype "int" "ft_str_is_uppercase" "src/c03/ex05/ft_str_is_uppercase.c"
+	check_norme "src/c03/ex05/ft_strlcat.c"
+	check_prototype "unsigned int" "ft_strlcat" "src/c03/ex05/ft_strlcat.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c03/ex05/main.c ./src/c03/ex05/ft_str_is_uppercase.c 
+	compile_tests ./tests/c03/ex05/main.c ./src/c03/ex05/ft_strlcat.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
+	
 	cd $usr_out
-	local RES_LOW="abcdefghijklmnopqrstuvwxyz"
-	local RES_UP="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	local RES_NUM="0123456789"
-	local RES_HYBRID="ABCD[Z_abfhjlqsuwz|"
-	local USER_LOW=$(./user.out "$RES_LOW")
-	local USER_UP=$(./user.out "$RES_UP")
-	local USER_NUM=$(./user.out "$RES_NUM")
-	local USER_HYBRID=$(./user.out "$RES_HYBRID")
-	local USER_EMPTY=$(./user.out "")
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_LOW" != "0" ]; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="0123456789"
+	local USER_OUTPUT=$(./user.out "$TEST" "3")
+	if [ "$USER_OUTPUT" == "10 012" ] ; then
+		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "10 012") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_NUM" != "0" ]; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="hey i'm dave"
+	local USER_OUTPUT=$(./user.out "$TEST" "12")
+	if [ "$USER_OUTPUT" == "12 hey i'm dave" ] ; then
+		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "12 hey i'm dave") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_UP" != "1" ]; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
+	local TEST="So long, and thanks for all the fish"
+	local USER_OUTPUT=$(./user.out "$TEST" "42")
+	if [ "$USER_OUTPUT" == "36 So long, and thanks for all the fish" ] ; then
+		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "36 So long, and thanks for all the fish") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_HYBRID" != "0" ]; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
-	if [ "$USER_EMPTY" != "1" ]; then
-		printf "${uni_fail}ex05/ft_str_is_uppercase.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "1") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	cd $current_dir
-}
-
-function	check_c03_ex06() {
-	usr_out=$current_dir/user_output/c03/ex06
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex06:\n${NOCOLOR}"
-	printf "= ex06 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex06/ft_str_is_printable.c" ; then
-		msg_nothing_turned_in "ex06/ft_str_is_printable.c"
-		return
-	fi
-	check_norme "src/c03/ex06/ft_str_is_printable.c"
-	check_prototype "int" "ft_str_is_printable" "src/c03/ex06/ft_str_is_printable.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex06/main.c ./src/c03/ex06/ft_str_is_printable.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex06/ft_str_is_printable.c${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-	local RES_PRINTABLE=" !\"#\$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\`abcdefghijklmnopqrstuvwxyz{|}~"
-	local USER_OUTPUT=$(./user.out "$RES_PRINTABLE")
-	if [ "$USER_OUTPUT" != "011" ]; then
-		printf "${uni_fail}ex06/ft_str_is_printable.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "011") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_success}ex06/ft_str_is_printable.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	cd $current_dir
-}
-
-function	check_c03_ex07() {
-	usr_out=$current_dir/user_output/c03/ex07
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex07:\n${NOCOLOR}"
-	printf "= ex07 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex07/ft_strupcase.c" ; then
-		msg_nothing_turned_in "ex07/ft_strupcase.c"
-		return
-	fi
-	check_norme "src/c03/ex07/ft_strupcase.c"
-	check_prototype "char" "\*ft_strupcase" "src/c03/ex07/ft_strupcase.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex07/main.c ./src/c03/ex07/ft_strupcase.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex07/ft_strupcase.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-		printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "they built the highway")
-		local RES="THEY BUILT THE HIGHWAY"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex07/ft_strupcase.c\t\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex07/ft_strupcase.c\t\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-		printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "th3y bui|t the h!\\ghway")
-		local RES="TH3Y BUI|T THE H!\\GHWAY"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex07/ft_strupcase.c\t\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex07/ft_strupcase.c\t\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-	cd $current_dir
-}
-
-function	check_c03_ex08() {
-	usr_out=$current_dir/user_output/c03/ex08
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
-	printf "= ex08 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex08/ft_strlowcase.c" ; then
-		msg_nothing_turned_in "ex08/ft_strlowcase.c"
-		return
-	fi
-	check_norme "src/c03/ex08/ft_strlowcase.c"
-	check_prototype "char" "\*ft_strlowcase" "src/c03/ex08/ft_strlowcase.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex08/main.c ./src/c03/ex08/ft_strlowcase.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex08/ft_strlowcase.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-		printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "THEY BUILT THE HIGHWAY")
-		local RES="they built the highway"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex08/ft_strlowcase.c\t\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex08/ft_strlowcase.c\t\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-		printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "TH3Y BUI|T THE H!\\GHWAY")
-		local RES="th3y bui|t the h!\\ghway"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex08/ft_strlowcase.c\t\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex08/ft_strlowcase.c\t\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-	cd $current_dir
-}
-
-function	check_c03_ex09() {
-	usr_out=$current_dir/user_output/c03/ex09
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex09:\n${NOCOLOR}"
-	printf "= ex09 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex09/ft_strcapitalize.c" ; then
-		msg_nothing_turned_in "ex09/ft_strcapitalize.c"
-		return
-	fi
-	check_norme "src/c03/ex09/ft_strcapitalize.c"
-	check_prototype "char" "\*ft_strcapitalize" "src/c03/ex09/ft_strcapitalize.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex09/main.c ./src/c03/ex09/ft_strcapitalize.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex09/ft_strcapitalize.c\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-		printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "they built the highway")
-		local RES="They Built The Highway"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex09/ft_strcapitalize.c\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex09/ft_strcapitalize.c\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-		printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "th3Y=bu1|t&thE h!\\ghWAY")
-		local RES="Th3y=Bu1|T&The H!\\Ghway"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex09/ft_strcapitalize.c\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex09/ft_strcapitalize.c\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-		printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-		local USER_OUTPUT=$(./user.out "THEY BUILT THE HIGHWAY")
-		local RES="They Built The Highway"
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex09/ft_strcapitalize.c\t${diff_ok}${NOCOLOR}\n"
-			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-		else
-			printf "${uni_fail}ex09/ft_strcapitalize.c\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-		fi
-	cd $current_dir
-}
-
-function	check_c03_ex10() {
-	usr_out=$current_dir/user_output/c03/ex10
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex10:\n${NOCOLOR}"
-	printf "= ex10 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex10/ft_strlcpy.c" ; then
-		msg_nothing_turned_in "ex10/ft_strlcpy.c"
-		return
-	fi
-	check_norme "src/c03/ex10/ft_strlcpy.c"
-	check_prototype "unsigned int" "ft_strlcpy" "src/c03/ex10/ft_strlcpy.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex10/main.c ./src/c03/ex10/ft_strlcpy.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex10/ft_strlcpy.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-	local USER_OUTPUT=$(./user.out)
-	local RES="marvin"
-	if [ "$USER_OUTPUT" == "$RES" ] ; then
-		printf "${uni_success}ex10/ft_strlcpy.c\t\t${diff_ok}${NOCOLOR}\n"
+	local TEST="hot chocolate milk"
+	local USER_OUTPUT=$(./user.out "$TEST" "0")
+	if [ "$USER_OUTPUT" == "18 " ] ; then
+		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex10/ft_strlcpy.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo $RES) <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "18") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
-}
-
-function	check_c03_ex11() {
-	usr_out=$current_dir/user_output/c03/ex11
-	mkdir $usr_out
-	printf " ${YELLOW}${UNDERLINE}ex11:\n${NOCOLOR}"
-	printf "= ex11 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c03/ex11/ft_putstr_non_printable.c" ; then
-		msg_nothing_turned_in "ex11/ft_putstr_non_printable.c"
-		return
-	fi
-	check_norme "src/c03/ex11/ft_putstr_non_printable.c"
-	check_prototype "void" "ft_putstr_non_printable" "src/c03/ex11/ft_putstr_non_printable.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c03/ex11/main.c ./src/c03/ex11/ft_putstr_non_printable.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex11/ft_putstr_non_printable.c${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-	local USER_OUTPUT=$(./user.out)
-	local RES="marvin \\07the\\08 bot\\09, \\0athe\\0b ship\\0c is\\0d in\\0a danger"
-	if [ "$USER_OUTPUT" == "$RES" ] ; then
-		printf "${uni_success}ex11/ft_putstr_non_printable.c${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex11/ft_putstr_non_printable.c${diff_ko}${NOCOLOR}\n"
-		diff <(echo $RES) <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	cd $current_dir
-}
-
-function	check_c03_ex12() {
-	printf " ${YELLOW}${UNDERLINE}ex12:\n${NOCOLOR}"
-	printf "= ex12 =\n==========================================\n" >> DEEPTHOUGHT
-	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
-	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
 }
 
 function	c03() {
@@ -658,8 +385,8 @@ function	c03() {
 	check_c03_ex01
 	check_c03_ex02
 	check_c03_ex03
-#	check_c03_ex04
-#	check_c03_ex05
+	check_c03_ex04
+	check_c03_ex05
 #	check_c03_ex06
 #	check_c03_ex07
 #	check_c03_ex08

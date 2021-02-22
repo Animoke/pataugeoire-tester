@@ -11,7 +11,7 @@
 #AUTHOR: gpatingr (gpatingr@student.42.fr)
 VERSION="v. 1.0"
 
-src_path="../piscine" # set projects directory here
+src_path="../piscine-test3" # set projects directory here
 current_dir=$PWD
 
 source	srcs/var/colors.sh

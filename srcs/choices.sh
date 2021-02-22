@@ -13,13 +13,15 @@ function	choices() {
 printf "${YELLOW}===============================================================================
                                       Menu
 ===============================================================================
-	0) All;
-	1) Test shell00;
-	2) Test shell01;
+	0)  All;
+	1)  Test shell00;
+	2)  Test shell01;
 
-	3) Test c00;
-	4) Test c01;
-	5) Test c02;\n\n${NOCOLOR}Type option (default: 0): "
+	10) Test c00;
+	11) Test c01;
+	12) Test c02;
+	13) Test c03;
+\n${NOCOLOR}Type option (default: 0): "
 	read
 		if [ "$REPLY" == "0" ] || [ "$REPLY" == "" ]; then
 			run_all
@@ -27,12 +29,14 @@ printf "${YELLOW}===============================================================
 			shell00
 		elif [ "$REPLY" == "2" ]; then
 			shell01
-		elif [ "$REPLY" == "3" ]; then
+		elif [ "$REPLY" == "10" ]; then
 			c00	
-		elif [ "$REPLY" == "4" ]; then
+		elif [ "$REPLY" == "11" ]; then
 			c01
-		elif [ "$REPLY" == "5" ]; then
+		elif [ "$REPLY" == "12" ]; then
 			c02
+		elif [ "$REPLY" == "13" ]; then
+			c03
 		else
 			printf "${RED}===> Invalid option: $REPLY <===\n${NOCOLOR}"
 	fi
@@ -45,4 +49,5 @@ function	run_all() {
 	c00
 	c01
 	c02
+	c03
 }
