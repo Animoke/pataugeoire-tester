@@ -1,0 +1,29 @@
+.TH pataugeoire-tester "" "22 February 2021"
+.SH NAME
+.BR pataugeoire-tester " -- piscine projects tester"
+.SH SYNOPSYS
+.RB bash " grademe.sh"
+.RI [ "options ..." ]
+.SH DESCRIPTION
+pataugeoire-tester is a bash script that tests your piscine projects.
+.SH USAGE
+Please refer to the README.md file.
+.SH OPTIONS
+.B -shXX --shellXX		
+test only shellXX project
+.br
+.B -cXX  --cXX			
+test only cXX project
+.br
+.B -h --help				
+displays this help page
+.br
+.SH FEATURES
+Currently, this tester supports options (see [OPTIONS]) and can test upto c05 (work in progress).
+.br
+If you run it without options, an interactive prompt shows up and asks for the tests you wish to run.
+.br
+.SH NOTE
+Please note that this is a work in progress. More tests are coming soon.
+.SH BUG
+For any bugs reporting, contact gpatingr@student.42.fr

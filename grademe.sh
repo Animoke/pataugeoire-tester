@@ -39,7 +39,7 @@ source	srcs/checks/check_c05.sh
 
 case $1 in
 	--help | -h) 
-		man srcs/help1 ;;
+		man srcs/help ;;
 	--shell00 | -sh00) init ; shell00 ;;
 	--shell01 | -sh01) init ; shell01 ;;
 	--c00 | -c00) init ; c00 ;;
