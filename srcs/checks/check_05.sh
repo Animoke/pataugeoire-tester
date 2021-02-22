@@ -265,7 +265,7 @@ function	check_c04_ex03() {
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "${RED}Your ft_atoi does not work with INT_MAX\n${NOCOLOR}"
+		printf "${RED}Your ft_atoi does not work with INT_MAX\n${NOCOLO}"
 		diff <(echo "2147483647") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\nYour ft_atoi does not work with INT_MAX\n" >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
@@ -278,7 +278,7 @@ function	check_c04_ex03() {
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLOR}"
+		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLO}"
 		diff <(echo "2147483647") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\nYour ft_atoi does not work with INT_MIN\n" >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT

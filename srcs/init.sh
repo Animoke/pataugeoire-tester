@@ -23,7 +23,7 @@ function	clean_before_launch() {
 
 function	ask_username() {
 	if [ "$USER_NAME" == "gpatingr" ] ; then
-		printf "Welcome, you!\n\n"
+		printf "Welcome, gpatingr!\n\n"
 		return
 	fi
 	printf "Are you $USER_NAME ? [Y/n] "
@@ -36,6 +36,7 @@ function	ask_username() {
 			USER_NAME=$REPLY
 		fi
 	fi
+	printf "Welcome, $USER_NAME!\n\n"
 }
 
 function	init() {

@@ -65,6 +65,13 @@ int				ft_strlcat(char *dest, char *src, unsigned int size);
 // c04
 int				ft_strlen(char *str);
 void			ft_putstr(char *str);
+void			ft_putnbr(int nb);
 int				ft_atoi(char *str);
 
+// c05
+int				ft_iterative_factorial(int nb);
+int				ft_recursive_factorial(int nb);
+int				ft_iterative_power(int nb, int power);
+int				ft_recursive_power(int nb, int power);
+int				ft_fibonacci(int index);
 #endif
