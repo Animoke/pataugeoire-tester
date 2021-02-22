@@ -65,5 +65,6 @@ int				ft_strlcat(char *dest, char *src, unsigned int size);
 // c04
 int				ft_strlen(char *str);
 void			ft_putstr(char *str);
+int				ft_atoi(char *str);
 
 #endif

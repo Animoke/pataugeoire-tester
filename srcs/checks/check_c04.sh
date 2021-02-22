@@ -208,198 +208,97 @@ function	check_c04_ex03() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex03:\n${NOCOLOR}"
 	printf "= ex03 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c04/ex03/ft_strncat.c" ; then
-		msg_nothing_turned_in "ex03/ft_strncat.c"
+	if ! file_exists "src/c04/ex03/ft_atoi.c" ; then
+		msg_nothing_turned_in "ex03/ft_atoi.c"
 		return
 	fi
-	check_norme "src/c04/ex03/ft_strncat.c"
-	check_prototype "char" "\*ft_strncat" "src/c04/ex03/ft_strncat.c"
+	check_norme "src/c04/ex03/ft_atoi.c"
+	check_prototype "int" "ft_atoi" "src/c04/ex03/ft_atoi.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests ./tests/c04/ex03/main.c ./src/c04/ex03/ft_strncat.c 
+	compile_tests ./tests/c04/ex03/main.c ./src/c04/ex03/ft_atoi.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
 	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="0123456789"
-	local USER_OUTPUT=$(./user.out "$TEST" "8")
-	if [ "$USER_OUTPUT" == "0123456701234567" ] ; then
-		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
+	local TEST=" ---+-+-0123456789"
+	local USER_OUTPUT=$(./user.out "$TEST")
+	if [ "$USER_OUTPUT" == "-123456789" ] ; then
+		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "0123456701234567") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "-123456789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="hey i'm dave"
+	local TEST="+-+-427425"
 	local USER_OUTPUT=$(./user.out "$TEST" "5")
-	if [ "$USER_OUTPUT" == "hey ihey i" ] ; then
-		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
+	if [ "$USER_OUTPUT" == "427425" ] ; then
+		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "hey ihey i") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "427425") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="So long, and thanks for all the fish"
+	local TEST="---42yd74"
 	local USER_OUTPUT=$(./user.out "$TEST" "28")
-	if [ "$USER_OUTPUT" == "So long, and thanks for all So long, and thanks for all " ] ; then
-		printf "${uni_success}ex03/ft_strncat.c\t\t${diff_ok}${NOCOLOR}\n"
+	if [ "$USER_OUTPUT" == "-42" ] ; then
+		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
 		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
-		printf "${uni_fail}ex03/ft_strncat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "$TEST$TEST") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
+		diff <(echo "-42") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+	fi
+	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
+	local TEST="  +2147483647"
+	local USER_OUTPUT=$(./user.out "$TEST" "28")
+	if [ "$USER_OUTPUT" == "2147483647" ] ; then
+		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${RED}Your ft_atoi does not work with INT_MAX\n${NOCOLO}"
+		diff <(echo "2147483647") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\nYour ft_atoi does not work with INT_MAX\n" >> $current_dir/DEEPTHOUGHT
+		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+	fi
+	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
+	local TEST="  -+-2147483648"
+	local USER_OUTPUT=$(./user.out "$TEST" "28")
+	if [ "$USER_OUTPUT" == "-2147483648" ] ; then
+		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
+		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+	else
+		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
+		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLO}"
+		diff <(echo "2147483647") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		printf "\nYour ft_atoi does not work with INT_MIN\n" >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
 
 function	check_c04_ex04() {
-	usr_out=$current_dir/user_output/c04/ex04
-	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex04:\n${NOCOLOR}"
 	printf "= ex04 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c04/ex04/ft_strstr.c" ; then
-		msg_nothing_turned_in "ex04/ft_strstr.c"
-		return
-	fi
-	check_norme "src/c04/ex04/ft_strstr.c"
-	check_prototype "char" "\*ft_strstr" "src/c04/ex04/ft_strstr.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c04/ex04/main.c ./src/c04/ex04/ft_strstr.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	cd $usr_out
-	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	local TEST1="0123456789"
-	local TEST2="7"
-	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
-	if [ "$USER_OUTPUT" == "ok" ] ; then
-		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "789 789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	local TEST1="hey i'm dave"
-	local TEST2="7"
-	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
-	if [ "$USER_OUTPUT" == "ok" ] || [ "$USER_OUTPUT" == "" ] ; then
-		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	local TEST1="So long, and thanks for all the fish"
-	local TEST2=" "
-	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
-	if [ "$USER_OUTPUT" == "ok" ] ; then
-		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo " long, and thanks for all the fish long, and thanks for all the fish") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	local TEST1="hot chocolate milk"
-	local TEST2="late"
-	local USER_OUTPUT=$(./user.out "$TEST1" "$TEST2")
-	if [ "$USER_OUTPUT" == "ok" ] ; then
-		printf "${uni_success}ex04/ft_strstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex04/ft_strstr.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "late milk late milk") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	cd $current_dir
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
+	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
 }
 
 function	check_c04_ex05() {
-	usr_out=$current_dir/user_output/c04/ex05
-	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
 	printf "= ex05 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c04/ex05/ft_strlcat.c" ; then
-		msg_nothing_turned_in "ex05/ft_strlcat.c"
-		return
-	fi
-	check_norme "src/c04/ex05/ft_strlcat.c"
-	check_prototype "unsigned int" "ft_strlcat" "src/c04/ex05/ft_strlcat.c"
-	if [ "$NORME" != "0" ] ; then
-		return
-	fi
-	compile_tests ./tests/c04/ex05/main.c ./src/c04/ex05/ft_strlcat.c 
-	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		printf "\ndiff ko :(\n\n" >> DEEPTHOUGHT
-		return
-	fi
-	
-	cd $usr_out
-	printf "> test 1\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="0123456789"
-	local USER_OUTPUT=$(./user.out "$TEST" "3")
-	if [ "$USER_OUTPUT" == "10 012" ] ; then
-		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "10 012") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="hey i'm dave"
-	local USER_OUTPUT=$(./user.out "$TEST" "12")
-	if [ "$USER_OUTPUT" == "12 hey i'm dave" ] ; then
-		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "12 hey i'm dave") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="So long, and thanks for all the fish"
-	local USER_OUTPUT=$(./user.out "$TEST" "42")
-	if [ "$USER_OUTPUT" == "36 So long, and thanks for all the fish" ] ; then
-		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "36 So long, and thanks for all the fish") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
-	local TEST="hot chocolate milk"
-	local USER_OUTPUT=$(./user.out "$TEST" "0")
-	if [ "$USER_OUTPUT" == "18 " ] ; then
-		printf "${uni_success}ex05/ft_strlcat.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex05/ft_strlcat.c\t\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "18") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
-	cd $current_dir
-}
+	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
+	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
+	}
 
 function	c04() {
 	mkdir src/c04 user_output/c04
@@ -409,9 +308,9 @@ function	c04() {
 	check_c04_ex00
 	check_c04_ex01
 	check_c04_ex02
-#	check_c04_ex03
-#	check_c04_ex04
-#	check_c04_ex05
+	check_c04_ex03
+	check_c04_ex04
+	check_c04_ex05
 	rm -rf $current_dir/user_output/c04 $current_dir/src/c04
 	printf "${GREEN}\nAll c04 tests are done.\n\n${NOCOLOR}"
 	printf "\n\nAll c04 tests are done.\n" >> DEEPTHOUGHT
