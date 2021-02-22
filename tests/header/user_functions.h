@@ -62,4 +62,8 @@ char			*ft_strncat(char *dest, char *src, unsigned int nb);
 char			*ft_strstr(char *src, char *to_find);
 int				ft_strlcat(char *dest, char *src, unsigned int size);
 
+// c04
+int				ft_strlen(char *str);
+void			ft_putstr(char *str);
+
 #endif
