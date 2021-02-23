@@ -24,6 +24,7 @@ printf "${YELLOW}===============================================================
 	14) Test c04;
 	15) Test c05;
 	16) Test c06;
+	17) Test c07;
 \n${NOCOLOR}Type option (default: 0): "
 	read
 		if [ "$REPLY" == "0" ] || [ "$REPLY" == "" ]; then
@@ -46,6 +47,8 @@ printf "${YELLOW}===============================================================
 			c05
 		elif [ "$REPLY" == "16" ]; then
 			c06
+		elif [ "$REPLY" == "17" ]; then
+			c07
 		else
 			printf "${RED}===> Invalid option: $REPLY <===\n${NOCOLOR}"
 	fi

@@ -275,7 +275,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST" "28")
 	if [ "$USER_OUTPUT" == "-2147483648" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		p8rintf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLOR}"

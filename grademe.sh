@@ -11,7 +11,7 @@
 #AUTHOR: gpatingr (gpatingr@student.42.fr)
 VERSION="v. 1.0"
 
-src_path="../piscine" # set projects directory here
+src_path="../test1" # set projects directory here
 current_dir=$PWD
 
 source	srcs/var/colors.sh
@@ -32,6 +32,7 @@ source	srcs/checks/check_c03.sh
 source	srcs/checks/check_c04.sh
 source	srcs/checks/check_c05.sh
 source	srcs/checks/check_c06.sh
+source	srcs/checks/check_c07.sh
 
 #function	cleanup() {
 #	rm -rf src user_output
@@ -50,6 +51,7 @@ case $1 in
 	--c04 | -c04) init ; c04 ;;
 	--c05 | -c05) init ; c05 ;;
 	--c06 | -c06) init ; c06 ;;
+	--c07 | -c07) init ; c07 ;;
 	-a) init ; run_all ;;
 	*)
 #		man srcs/help ;;

@@ -6,7 +6,7 @@
 /*   By: gpatingr <gpatingr@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 00:06:00 by gpatingr          #+#    #+#             */
-/*   Updated: 2021/02/23 14:27:45 by gpatingr         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:38:09 by gpatingr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ int				ft_fibonacci(int index);
 int				ft_sqrt(int nb);
 int				ft_is_prime(int nb);
 int				ft_find_next_prime(int nb);
+
+// c06
+char			*ft_strdup(char *src);
 
 #endif
