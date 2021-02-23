@@ -35,7 +35,7 @@ function	check_c04_ex00() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "ok" ] ; then
 		printf "${uni_success}ex00/ft_strlen.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex00/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "10") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -46,7 +46,7 @@ function	check_c04_ex00() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "ok" ] ; then
 		printf "${uni_success}ex00/ft_strlen.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex00/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "12") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -57,7 +57,7 @@ function	check_c04_ex00() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "ok" ] ; then
 		printf "${uni_success}ex00/ft_strlen.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex00/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "36") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -67,7 +67,7 @@ function	check_c04_ex00() {
 	local USER_OUTPUT=$(./user.out "")
 	if [ "$USER_OUTPUT" == "ok" ] ; then
 		printf "${uni_success}ex00/ft_strlen.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex00/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "0") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -102,7 +102,7 @@ function	check_c04_ex01() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "$TEST" ] ; then
 		printf "${uni_success}ex01/ft_putstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex01/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "$TEST") <(echo "$USER_OUTPUT") >> $current_dir/DEEPTHOUGHT
@@ -113,7 +113,7 @@ function	check_c04_ex01() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "$TEST" ] ; then
 		printf "${uni_success}ex01/ft_putstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex01/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "$TEST") <(echo "$USER_OUTPUT") >> $current_dir/DEEPTHOUGHT
@@ -124,7 +124,7 @@ function	check_c04_ex01() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "$TEST" ] ; then
 		printf "${uni_success}ex01/ft_putstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex01/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "$TEST") <(echo "$USER_OUTPUT") >> $current_dir/DEEPTHOUGHT
@@ -135,7 +135,7 @@ function	check_c04_ex01() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "$TEST" ] ; then
 		printf "${uni_success}ex01/ft_putstr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex01/ft_putstr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "$TEST") <(echo "$USER_OUTPUT") >> $current_dir/DEEPTHOUGHT
@@ -170,7 +170,7 @@ function	check_c04_ex02() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "123456789" ] ; then
 		printf "${uni_success}ex02/ft_putnbr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_putnbr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "0123456789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -181,7 +181,7 @@ function	check_c04_ex02() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "0" ] ; then
 		printf "${uni_success}ex02/ft_putnbr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_putnbr.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -192,7 +192,7 @@ function	check_c04_ex02() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "$TEST" ] ; then
 		printf "${uni_success}ex02/ft_putnbr.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex02/ft_putnbr.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "${RED}Your ft_putstr does not work with INT_MAX\n${NOCOLOR}"
@@ -229,7 +229,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST")
 	if [ "$USER_OUTPUT" == "-123456789" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "-123456789") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -240,7 +240,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST" "5")
 	if [ "$USER_OUTPUT" == "427425" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "427425") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -251,7 +251,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST" "28")
 	if [ "$USER_OUTPUT" == "-42" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		diff <(echo "-42") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
@@ -262,7 +262,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST" "28")
 	if [ "$USER_OUTPUT" == "2147483647" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "${RED}Your ft_atoi does not work with INT_MAX\n${NOCOLOR}"
@@ -275,7 +275,7 @@ function	check_c04_ex03() {
 	local USER_OUTPUT=$(./user.out "$TEST" "28")
 	if [ "$USER_OUTPUT" == "-2147483648" ] ; then
 		printf "${uni_success}ex03/ft_atoi.c\t\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		p8rintf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLOR}"

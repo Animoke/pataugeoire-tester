@@ -114,7 +114,7 @@ function	check_c02_ex02() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_NUM" != "0" ]; then
@@ -123,7 +123,7 @@ function	check_c02_ex02() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_SPECIAL" != "0" ]; then
@@ -132,7 +132,7 @@ function	check_c02_ex02() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_HYBRID" != "0" ]; then
@@ -141,7 +141,7 @@ function	check_c02_ex02() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_EMPTY" != "1" ]; then
@@ -150,7 +150,7 @@ function	check_c02_ex02() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex02/ft_str_is_alpha.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -192,7 +192,7 @@ function	check_c02_ex03() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_NUM" != "1" ]; then
@@ -201,7 +201,7 @@ function	check_c02_ex03() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_SPECIAL" != "0" ]; then
@@ -210,7 +210,7 @@ function	check_c02_ex03() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_HYBRID" != "0" ]; then
@@ -219,7 +219,7 @@ function	check_c02_ex03() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_EMPTY" != "1" ]; then
@@ -228,7 +228,7 @@ function	check_c02_ex03() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex03/ft_str_is_numeric.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -270,7 +270,7 @@ function	check_c02_ex04() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_NUM" != "0" ]; then
@@ -279,7 +279,7 @@ function	check_c02_ex04() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_UP" != "0" ]; then
@@ -288,7 +288,7 @@ function	check_c02_ex04() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_HYBRID" != "0" ]; then
@@ -297,7 +297,7 @@ function	check_c02_ex04() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_EMPTY" != "1" ]; then
@@ -306,7 +306,7 @@ function	check_c02_ex04() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex04/ft_str_is_lowercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
@@ -348,7 +348,7 @@ function	check_c02_ex05() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 2\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_NUM" != "0" ]; then
@@ -357,7 +357,7 @@ function	check_c02_ex05() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 3\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_UP" != "1" ]; then
@@ -366,7 +366,7 @@ function	check_c02_ex05() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 4\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_HYBRID" != "0" ]; then
@@ -375,7 +375,7 @@ function	check_c02_ex05() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	printf "> test 5\n" >> $current_dir/DEEPTHOUGHT
 	if [ "$USER_EMPTY" != "1" ]; then
@@ -384,7 +384,7 @@ function	check_c02_ex05() {
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	else
 		printf "${uni_success}ex05/ft_str_is_uppercase.c\t${diff_ok}${NOCOLOR}\n"
-		printf "\ndiff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
 	cd $current_dir
 }
