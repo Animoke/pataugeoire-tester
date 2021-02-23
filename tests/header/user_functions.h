@@ -6,7 +6,7 @@
 /*   By: gpatingr <gpatingr@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 00:06:00 by gpatingr          #+#    #+#             */
-/*   Updated: 2021/02/19 16:00:14 by gpatingr         ###   ########.fr       */
+/*   Updated: 2021/02/23 14:27:45 by gpatingr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-//#include <string.h>
-#include <bsd/string.h>
+#include <string.h>
 
 // c00 functions
 void			ft_putchar(char c);

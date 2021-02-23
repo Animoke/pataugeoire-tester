@@ -268,11 +268,11 @@ function	check_c01_ex06() {
 		local RES=$(echo $CAT | wc -c)
 		local USER_OUTPUT=$(./user.out "$CAT")
 		printf "> test $i\n" >> $current_dir/DEEPTHOUGHT
-		if [ "$USER_OUTPUT" == "$RES" ] ; then
-			printf "${uni_success}ex04/ft_ultimate_div_mod.c\t${diff_ok}${NOCOLOR}\n"
+		if [ $USER_OUTPUT -eq $RES ] ; then
+			printf "${uni_success}ex06/ft_strlen.c\t\t${diff_ok}${NOCOLOR}\n"
 			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 		else
-			printf "${uni_fail}ex04/ft_ultimate_div_mod.c\t${diff_ko}${NOCOLOR}\n"
+			printf "${uni_fail}ex06/ft_strlen.c\t\t${diff_ko}${NOCOLOR}\n"
 			diff <(echo $RES) <(echo $USER_OUTPUT)
 			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 		fi
