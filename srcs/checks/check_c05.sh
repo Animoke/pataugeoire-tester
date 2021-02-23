@@ -50,6 +50,7 @@ function	check_c05_ex00() {
 		fi
 		(( i++ ))
 	done
+	printf "> test 13\n" >> $current_dir/DEEPTHOUGHT
 	local USER_OUTPUT=$(./user.out "-2")
 	if [ "$USER_OUTPUT" == "0" ] ; then
 		printf "${uni_success}ex00/ft_iterative_factorial.c${diff_ok}${NOCOLOR}\n"
@@ -105,6 +106,7 @@ function	check_c05_ex01() {
 		fi
 		(( i++ ))
 	done
+	printf "> test 13\n" >> $current_dir/DEEPTHOUGHT
 	local USER_OUTPUT=$(./user.out "-2")
 	if [ "$USER_OUTPUT" == "0" ] ; then
 		printf "${uni_success}ex01/ft_recursive_factorial.c${diff_ok}${NOCOLOR}\n"
@@ -157,6 +159,7 @@ function	check_c05_ex02() {
 		(( i++ ))
 		(( j++ ))
 	done
+	printf "> test 9\n" >> $current_dir/DEEPTHOUGHT
 	local USER_OUTPUT=$(./user.out "-2" "-45367129")
 	if [ "$USER_OUTPUT" == "0" ] ; then
 		printf "${uni_success}ex02/ft_iterative_power.c\t${diff_ok}${NOCOLOR}\n"
@@ -209,6 +212,7 @@ function	check_c05_ex03() {
 		(( i++ ))
 		(( j++ ))
 	done
+	printf "> test 9\n" >> $current_dir/DEEPTHOUGHT
 	local USER_OUTPUT=$(./user.out "-2" "-45367129")
 	if [ "$USER_OUTPUT" == "0" ] ; then
 		printf "${uni_success}ex03/ft_recursive_power.c\t${diff_ok}${NOCOLOR}\n"
@@ -261,6 +265,7 @@ function	check_c05_ex04() {
 		(( i++ ))
 		j=$((j+4))
 	done
+	printf "> test 9\n" >> $current_dir/DEEPTHOUGHT
 	local USER_OUTPUT=$(./user.out "-2")
 	if [ "$USER_OUTPUT" == "-1" ] ; then
 		printf "${uni_success}ex04/ft_fibonacci.c\t\t${diff_ok}${NOCOLOR}\n"

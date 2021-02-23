@@ -279,7 +279,7 @@ function	check_c04_ex03() {
 	else
 		printf "${uni_fail}ex03/ft_atoi.c\t\t${diff_ko}${NOCOLOR}\n"
 		printf "${RED}Your ft_atoi does not work with INT_MIN\n${NOCOLOR}"
-		diff <(echo "2147483647") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+		diff <(echo "-2147483648") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 		printf "\nYour ft_atoi does not work with INT_MIN\n" >> $current_dir/DEEPTHOUGHT
 		printf "\ndiff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 	fi
