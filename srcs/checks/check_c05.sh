@@ -396,8 +396,8 @@ function	check_c05_ex07() {
 }
 
 function	check_c05_ex08() {
-	printf " ${YELLOW}${UNDERLINE}ex05:\n${NOCOLOR}"
-	printf "= ex05 =\n==========================================\n" >> DEEPTHOUGHT
+	printf " ${YELLOW}${UNDERLINE}ex08:\n${NOCOLOR}"
+	printf "= ex08 =\n==========================================\n" >> DEEPTHOUGHT
 	printf "${RED}This exercise is not supported yet.${NOCOLOR}\n"
 	printf "\nThis exercise is not supported yet.\n\n" >> DEEPTHOUGHT
 	}
