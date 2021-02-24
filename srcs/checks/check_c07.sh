@@ -67,26 +67,30 @@ function	check_c07_ex01() {
 		return
 	fi
 	cd $usr_out
-	local TEST=(12 84 54 54 32 999 1 14700 -10 10)
+	local TEST=(12 84 54 54 32 999 1 14 -10 10)
 	local i=0
-	while [ $i -lt 8 ]; do
+	while [ $i -lt 9 ]; do
+		echo > $usr_out/res_out
 		local j=${TEST[$i]}
-		echo $j
-		while [ ${TEST[$j]} -le ${TEST[$i+1]} ]; do
-			echo ${TEST[$j]} ${TEST[$i+1]}
-			echo $j $i
+		local k=${TEST[$i+1]}
+		printf "range=$j->$k\n" >> $current_dir/DEEPTHOUGHT
+		local l=$k; ((l--)) 
+		while [ $j -le $l ]; do
+		#	echo i: $i  j: $j  k: $k  l: $l
 			echo $j >> $usr_out/res_out
 			(( j++ ))
 		done
 		local RES=$(cat $usr_out/res_out)
-		./user.out "${TEST[$i]}" "${TEST[$i+1]}" > $usr_out/user_out
+		local j=${TEST[$i]}
+		./user.out "$j" "$k" > $usr_out/user_out
 		local USER_OUTPUT=$(cat $usr_our/user_out)
+		echo $USER_OUTPUT $RES
 		if [ "$USER_OUTPUT" == "$RES" ] ; then
 			printf "${uni_success}ex00/ft_range.c\t${diff_ok}${NOCOLOR}\n"
 			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
 		else
 			printf "${uni_fail}ex00/ft_range.c\t${diff_ko}${NOCOLOR}\n"
-			diff <(echo "${TEST[$i]} ${TEST[$i]}") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+			diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
 			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
 		fi
 		(( i++ ))
