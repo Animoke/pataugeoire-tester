@@ -33,7 +33,7 @@ function	check_c07_ex00() {
 	local TEST=("hello" "hi i'm dave" "So long, and thanks for all the fish" "0123456789")
 	local i=0
 	while [ $i -le 3 ]; do
-		local USER_OUTPUT=$(./user.out ${TEST[$i]})
+		local USER_OUTPUT=$(./user.out "${TEST[$i]}")
 		if [ "$USER_OUTPUT" == "${TEST[$i]} ${TEST[$i]}" ] ; then
 			printf "${uni_success}ex00/ft_strdup.c\t${diff_ok}${NOCOLOR}\n"
 			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
@@ -52,31 +52,46 @@ function	check_c07_ex01() {
 	mkdir $usr_out
 	printf " ${YELLOW}${UNDERLINE}ex01:\n${NOCOLOR}"
 	printf "= ex01 =\n==========================================\n" >> DEEPTHOUGHT
-	if ! file_exists "src/c07/ex01/ft_print_params.c" ; then
-		msg_nothing_turned_in "ex01/ft_print_params.c"
+	if ! file_exists "src/c07/ex01/ft_range.c" ; then
+		msg_nothing_turned_in "ex01/ft_range.c"
 		return
 	fi
-	check_norme "src/c07/ex01/ft_print_params.c"
+	check_norme "src/c07/ex01/ft_range.c"
 	if [ "$NORME" != "0" ] ; then
 		return
 	fi
-	compile_tests "" ./src/c07/ex01/ft_print_params.c 
+	compile_tests ./tests/c07/ex01/main.c ./src/c07/ex01/ft_range.c 
 	if [ "$IS_COMPILED" != "0" ] ; then
-		printf "${uni_fail}ex01/ft_print_params.c\t${diff_ko}${NOCOLOR}\n"
+		printf "${uni_fail}ex01/ft_range.c\t${diff_ko}${NOCOLOR}\n"
 		printf "diff ko :(\n\n" >> DEEPTHOUGHT
 		return
 	fi
 	cd $usr_out
-	local USER_OUTPUT=$(./user.out "first param" "second" "3rd")
-	local RES=$(printf "first param\nsecond\n3rd\n")
-	if [ "$USER_OUTPUT" == "$RES" ] ; then
-		printf "${uni_success}ex01/ft_print_params.c\t${diff_ok}${NOCOLOR}\n"
-		printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
-	else
-		printf "${uni_fail}ex01/ft_print_params.c\t${diff_ko}${NOCOLOR}\n"
-		diff <(echo "$RES") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
-		printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
-	fi
+	local TEST=(12 84 54 54 32 999 1 14700 -10 10)
+	local i=0
+	while [ $i -lt 8 ]; do
+		local j=${TEST[$i]}
+		echo $j
+		while [ ${TEST[$j]} -le ${TEST[$i+1]} ]; do
+			echo ${TEST[$j]} ${TEST[$i+1]}
+			echo $j $i
+			echo $j >> $usr_out/res_out
+			(( j++ ))
+		done
+		local RES=$(cat $usr_out/res_out)
+		./user.out "${TEST[$i]}" "${TEST[$i+1]}" > $usr_out/user_out
+		local USER_OUTPUT=$(cat $usr_our/user_out)
+		if [ "$USER_OUTPUT" == "$RES" ] ; then
+			printf "${uni_success}ex00/ft_range.c\t${diff_ok}${NOCOLOR}\n"
+			printf "diff ok :D\n\n" >> $current_dir/DEEPTHOUGHT
+		else
+			printf "${uni_fail}ex00/ft_range.c\t${diff_ko}${NOCOLOR}\n"
+			diff <(echo "${TEST[$i]} ${TEST[$i]}") <(echo $USER_OUTPUT) >> $current_dir/DEEPTHOUGHT
+			printf "diff ko :(\n\n" >> $current_dir/DEEPTHOUGHT
+		fi
+		(( i++ ))
+		(( i++ ))
+	done
 	cd $current_dir
 }
 
