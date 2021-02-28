@@ -65,4 +65,5 @@ function	run_all() {
 	c04
 	c05
 	c06
+	c07
 }
